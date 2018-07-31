@@ -1,61 +1,82 @@
 ===================
-arrays
+sequence match
 ===================
-
-[
-  345,
-  10.1,
-  10,
-  -10,
-  null,
-  true,
-  false,
-  { "stuff": "good" }
-]
-
+hello
 ---
 
-(value (array
-  (number)
-  (number)
-  (number)
-  (number)
-  (null)
-  (true)
-  (false)
-  (object (pair (string) (string)))))
+(pattern (term
+  (atom (pattern_character))
+  (atom (pattern_character))
+  (atom (pattern_character))
+  (atom (pattern_character))
+  (atom (pattern_character))
+))
 
 ===================
-long objects
+sequence match w/ '.' atom
 ===================
-
-{
-  "key1": "value1",
-  "key2": 1
-}
-
+he..o
 ---
 
-(value (object
-  (pair (string) (string))
-  (pair (string) (number))))
+(pattern (term
+  (atom (pattern_character))
+  (atom (pattern_character))
+  (atom)
+  (atom)
+  (atom (pattern_character))
+))
 
-================================
-Top-level numbers
-================================
-
--1
-
+===================
+assertions
+===================
+^he..o$
 ---
 
-(value (number))
+(pattern (term
+    (atom (assertion))
+    (atom (pattern_character))
+    (atom (pattern_character))
+    (atom)
+    (atom)
+    (atom (pattern_character))
+    (atom (assertion))))
 
-================================
-Top-level null
-================================
-
-null
-
+===================
+assertions
+===================
+Jack(?=Sprat)
 ---
 
-(value (null))
+(pattern (term
+    (atom (pattern_character))
+    (atom (pattern_character))
+    (atom (pattern_character))
+    (atom (pattern_character))
+    (atom (assertion (pattern (term
+      (atom (pattern_character))
+      (atom (pattern_character))
+      (atom (pattern_character))
+      (atom (pattern_character))
+      (atom (pattern_character))
+    ))))
+))
+
+===================
+non-capturing groups
+===================
+Jack(?:Sprat)
+---
+
+(pattern (term
+    (atom (pattern_character))
+    (atom (pattern_character))
+    (atom (pattern_character))
+    (atom (pattern_character))
+    (atom (non_capturing_group (pattern (term
+      (atom (pattern_character))
+      (atom (pattern_character))
+      (atom (pattern_character))
+      (atom (pattern_character))
+      (atom (pattern_character))
+    ))))
+))

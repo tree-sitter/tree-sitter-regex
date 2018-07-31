@@ -1,87 +1,127 @@
-module.exports = grammar({
-  name: 'json',
+const syntaxChars = [
+  ...'^$\\.*+?()[]{}|'
+]
 
-  extras: $ => [
-    /\s/
-  ],
+const escapedSyntaxChars = syntaxChars.map(
+  char => `\\${char}`
+).join('')
+
+module.exports = grammar({
+  name: 'regex',
+
+  extras: $ => [],
 
   rules: {
-    value: $ => $._value,
-
-    _value: $ => choice(
-      $.object,
-      $.array,
-      $.number,
-      $.string,
-      $.true,
-      $.false,
-      $.null
+    pattern: $ => choice(
+      $.term,
+      $.disjunction
     ),
 
-    object: $ => seq(
-      "{", commaSep($.pair), "}"
+    disjunction: $ => seq(
+      optional($.term), '|', optional($.term)
     ),
+      // prec.left(0, seq(
+      //   $.term,
+      //   repeat(seq(
+      //     '|',
+      //     $.term   // FIXME: Should be optional?
+      //   ))
+      // )),
 
-    pair: $ => seq(
-      choice($.string, $.number),
-      ":",
-      $._value
-    ),
+    // alternative: $ => $.term,
 
-    array: $ => seq(
-      "[", commaSep($._value), "]"
-    ),
+    term: $ =>
+      // FIXME: should be allowed to be empty
+      prec.left(0, repeat1($.atom, optional($.quantifier))),
 
-    string: $ => token(seq('"', repeat(choice(/[^\\"\n]/, /\\./)), '"')),
-
-    number: $ => {
-      const hex_literal = seq(
-        choice('0x', '0X'),
-        /[\da-fA-F]+/
+    assertion: $ => choice(
+      '^', '$', '\\b', '\\B',
+      seq(
+        '(?',
+        choice('=', '!', '<=', '<!'),
+        $.pattern,
+        ')'
       )
+    ),
 
-      const decimal_digits = /\d+/
-      const signed_integer = seq(optional(choice('-','+')), decimal_digits)
-      const exponent_part = seq(choice('e', 'E'), signed_integer)
+    atom: $ =>
+    choice(
+      $.assertion,
+      $.pattern_character,
+      '.',
+      // seq('\\', $.atom_escape),
+      // $.character_class,
+      // seq('(', /* $.group_specifier, */ $.pattern, ')'),
+      $.non_capturing_group,
+    ),
 
-      const binary_literal = seq(choice('0b', '0B'), /[0-1]+/)
+    non_capturing_group: $ => seq('(?:', $.pattern, ')'),
 
-      const octal_literal = seq(choice('0o', '0O'), /[0-7]+/)
+    pattern_character: $ => new RegExp(`[^${escapedSyntaxChars}]`),
 
-      const decimal_integer_literal = seq(
-        optional(choice('-','+')),
-        choice(
-          '0',
-          seq(/[1-9]/, optional(decimal_digits))
-        )
-      )
+    quantifier: $ => seq(
+      $.quantifier_prefix, optional('?')
+    ),
 
-      const decimal_literal = choice(
-        seq(decimal_integer_literal, '.', optional(decimal_digits), optional(exponent_part)),
-        seq('.', decimal_digits, optional(exponent_part)),
-        seq(decimal_integer_literal, optional(exponent_part))
-      )
+    quantifier_prefix: $ => choice(
+      '*', '+', '?',
+      // $.range_quantifier,
+    ),
 
-      return token(choice(
-        hex_literal,
-        decimal_literal,
-        binary_literal,
-        octal_literal
-      ))
-    },
+    //
+    // quantifier: $ => seq(
+    //   $.quantifier_prefix, optional('?')
+    // ),
+    //
+    // quantifier_prefix: $ => choice(
+    //   '*', '+', '?',
+    //   $.range_quantifier,
+    // ),
+    //
+    // range_quantifier: $ => seq(
+    //   '{',
+    //   seq($.decimal_digits, optional(',', $.decimal_digits)),
+    //   '}'
+    // ),
+    //
+    //
+    // character_class: $ => seq(
+    //   '[',
+    //   optional('^'),
+    //   optional($.class_ranges),
+    //   ']'
+    // ),
+    //
+    // class_ranges: $ => seq(
+    //   $.class_atom,
+    //   seq('-', $.class_atom),
+    // ),
+    //
+    // class_atom: $ => /[^\\\]\-]/,
+    //
+    atom_escape: $ => choice(
+      // $.decimal_escape,
+      $.character_class_escape,
+      $.character_escape,
+      // seq('k', $.group_name),
+    ),
 
-    true: $ => "true",
+    character_class_escape: $ => /[dDsSwW]/,
 
-    false: $ => "false",
+    character_escape: $ => choice(
+      $.control_escape,
+      seq('c', $.control_letter)
+      // 0[lookahead ∉ DecimalDigit]
+    ),
 
-    null: $ => "null"
+    control_escape: $ => /[fnrtv]/,
+    control_letter: $ => /[a-zA-Z]/,
+
+    //   // TODO: [+U]p{UnicodePropertyValueExpression}
+    //   // TODO: [+U]P{UnicodePropertyValueExpression}
+    //
+    // // group_name: $ => seq('<')
+    //
+    // decimal_digits: $ => /[0-9]+/
   }
-});
-
-function commaSep1 (rule) {
-  return seq(rule, repeat(seq(",", rule)))
-}
-
-function commaSep (rule) {
-  return optional(commaSep1(rule))
-}
+})

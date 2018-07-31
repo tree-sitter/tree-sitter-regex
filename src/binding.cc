@@ -4,7 +4,7 @@
 
 using namespace v8;
 
-extern "C" TSLanguage * tree_sitter_json();
+extern "C" TSLanguage * tree_sitter_regex();
 
 namespace {
 
@@ -17,12 +17,12 @@ void Init(Handle<Object> exports, Handle<Object> module) {
 
   Local<Function> constructor = tpl->GetFunction();
   Local<Object> instance = constructor->NewInstance(Nan::GetCurrentContext()).ToLocalChecked();
-  Nan::SetInternalFieldPointer(instance, 0, tree_sitter_json());
+  Nan::SetInternalFieldPointer(instance, 0, tree_sitter_regex());
 
   instance->Set(Nan::New("name").ToLocalChecked(), Nan::New("json").ToLocalChecked());
   module->Set(Nan::New("exports").ToLocalChecked(), instance);
 }
 
-NODE_MODULE(tree_sitter_json_binding, Init)
+NODE_MODULE(tree_sitter_regex_binding, Init)
 
 }  // namespace

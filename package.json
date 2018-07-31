@@ -1,13 +1,13 @@
 {
-  "name": "tree-sitter-json",
+  "name": "tree-sitter-regex",
   "version": "0.13.0",
-  "description": "JSON grammar for tree-sitter",
+  "description": "regex grammar for tree-sitter",
   "main": "index.js",
   "keywords": [
     "parser",
-    "json"
+    "regex"
   ],
-  "author": "Max Brunsfeld",
+  "author": "Ashi Krishnan <queerviolet@github.com>",
   "license": "MIT",
   "dependencies": {
     "nan": "^2.0.0"
