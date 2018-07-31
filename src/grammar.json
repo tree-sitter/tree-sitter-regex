@@ -58,8 +58,25 @@
     "term": {
       "type": "REPEAT1",
       "content": {
-        "type": "SYMBOL",
-        "name": "atom"
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "atom"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "quantifier"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
       }
     },
     "atom": {

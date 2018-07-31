@@ -27,6 +27,19 @@ he..o
 ))
 
 ===================
+quantifiers
+===================
+h*?e*l+.?
+---
+
+(pattern (term
+  (atom (pattern_character)) (quantifier (quantifier_prefix))
+  (atom (pattern_character)) (quantifier (quantifier_prefix))
+  (atom (pattern_character)) (quantifier (quantifier_prefix))
+  (atom) (quantifier (quantifier_prefix))
+))
+
+===================
 disjunctions
 ===================
 he..o|wo.ld
@@ -73,7 +86,7 @@ he..o||wo.ld
 ))
 
 ===================
-assertions
+assertions - line start / end
 ===================
 ^he..o$
 ---
@@ -87,6 +100,23 @@ assertions
   (atom (pattern_character))
   (atom (assertion))
 ))
+
+===================
+assertions - word boundary
+===================
+\Bhe..o\b
+---
+
+(pattern (term
+  (atom (assertion))
+  (atom (pattern_character))
+  (atom (pattern_character))
+  (atom)
+  (atom)
+  (atom (pattern_character))
+  (atom (assertion))
+))
+
 
 ===================
 disjunction w empty terms & assertions
@@ -113,7 +143,7 @@ disjunction w empty terms & assertions
 ))
 
 ===================
-assertions
+lookahead
 ===================
 Jack(?=Sprat)
 ---

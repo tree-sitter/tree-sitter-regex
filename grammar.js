@@ -7,7 +7,7 @@ const disjunction = $ =>
   seq(optional($.term), repeat1(seq('|', optional($.term))))
 
 const term = $ =>
-  repeat1($.atom, optional($.quantifier))
+  repeat1(seq($.atom, optional($.quantifier)))
 
 const atom = $ =>
   choice(
