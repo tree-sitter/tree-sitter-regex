@@ -9,6 +9,17 @@ const disjunction = $ =>
 const term = $ =>
   repeat1($.atom, optional($.quantifier))
 
+const atom = $ =>
+  choice(
+    $.assertion,
+    $.pattern_character,
+    $.character_class,
+    '.',
+    // seq('\\', $.atom_escape),
+    // seq('(', /* $.group_specifier, */ $.pattern, ')'),
+    $.non_capturing_group,
+  )
+
 const assertion = $ => choice(
   '^', '$', '\\b', '\\B',
   seq(
@@ -19,20 +30,23 @@ const assertion = $ => choice(
   )
 )
 
-const atom = $ =>
-  choice(
-    $.assertion,
-    $.pattern_character,
-    '.',
-    // seq('\\', $.atom_escape),
-    // $.character_class,
-    // seq('(', /* $.group_specifier, */ $.pattern, ')'),
-    $.non_capturing_group,
-  )
-
 const pattern_character = $ =>
   // Anything not a SYNTAX_CHAR
   new RegExp(`[^${SYNTAX_CHARS_ESCAPED}]`)
+
+const character_class = $ => seq(
+  '[',
+  optional('^'),
+  repeat($.class_range),
+  ']'
+)
+
+const class_range = $ =>
+  seq($.class_atom, optional(seq('-', $.class_atom)))
+
+const class_atom = $ =>
+  // NOT: \ ] or -
+  /[^\\\]\-]/
 
 const non_capturing_group = $ =>
   seq('(?:', $.pattern, ')')
@@ -78,11 +92,12 @@ module.exports = grammar({
 
   rules: {
     pattern,
-    disjunction,      
+    disjunction,
     term,
-    assertion,
     atom,
     non_capturing_group,
+    assertion,
+    character_class, class_range, class_atom,
     pattern_character,
     quantifier,
     quantifier_prefix,
@@ -104,19 +119,7 @@ module.exports = grammar({
     // ),
     //
     //
-    // character_class: $ => seq(
-    //   '[',
-    //   optional('^'),
-    //   optional($.class_ranges),
-    //   ']'
-    // ),
     //
-    // class_ranges: $ => seq(
-    //   $.class_atom,
-    //   seq('-', $.class_atom),
-    // ),
-    //
-    // class_atom: $ => /[^\\\]\-]/,
     //
 
     atom_escape,

@@ -72,8 +72,6 @@ he..o||wo.ld
   )
 ))
 
-
-
 ===================
 assertions
 ===================
@@ -81,13 +79,38 @@ assertions
 ---
 
 (pattern (term
+  (atom (assertion))
+  (atom (pattern_character))
+  (atom (pattern_character))
+  (atom)
+  (atom)
+  (atom (pattern_character))
+  (atom (assertion))
+))
+
+===================
+disjunction w empty terms & assertions
+===================
+^he..o$||w..ld$
+---
+
+(pattern (disjunction
+  (term
     (atom (assertion))
     (atom (pattern_character))
     (atom (pattern_character))
     (atom)
     (atom)
     (atom (pattern_character))
-    (atom (assertion))))
+    (atom (assertion)))
+  (term
+    (atom (pattern_character))
+    (atom)
+    (atom)
+    (atom (pattern_character))
+    (atom (pattern_character))
+    (atom (assertion)))
+))
 
 ===================
 assertions
@@ -107,6 +130,23 @@ Jack(?=Sprat)
       (atom (pattern_character))
       (atom (pattern_character))
     ))))
+))
+
+===================
+character classes
+===================
+[A-Za-z][^Xx]
+---
+
+(pattern (term
+  (atom (character_class
+    (class_range (class_atom) (class_atom))
+    (class_range (class_atom) (class_atom))
+  ))
+  (atom (character_class
+    (class_range (class_atom))
+    (class_range (class_atom))
+  ))
 ))
 
 ===================
