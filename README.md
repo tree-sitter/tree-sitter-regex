@@ -1,6 +1,6 @@
-tree-sitter-json
+tree-sitter-regex
 ===========================
 
-[![Build Status](https://travis-ci.org/tree-sitter/tree-sitter-json.svg?branch=master)](https://travis-ci.org/tree-sitter/tree-sitter-json)
+[![Build Status](https://travis-ci.org/tree-sitter/tree-sitter-regex.svg?branch=master)](https://travis-ci.org/tree-sitter/tree-sitter-regex)
 
-JSON grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter)
+Regex grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter)

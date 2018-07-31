@@ -1,8 +1,73 @@
-const syntaxChars = [
+const pattern = $ => choice(
+  $.disjunction,
+  $.term,
+)
+
+const disjunction = $ =>
+  seq(optional($.term), repeat1(seq('|', optional($.term))))
+
+const term = $ =>
+  repeat1($.atom, optional($.quantifier))
+
+const assertion = $ => choice(
+  '^', '$', '\\b', '\\B',
+  seq(
+    '(?',
+    choice('=', '!', '<=', '<!'),
+    $.pattern,
+    ')'
+  )
+)
+
+const atom = $ =>
+  choice(
+    $.assertion,
+    $.pattern_character,
+    '.',
+    // seq('\\', $.atom_escape),
+    // $.character_class,
+    // seq('(', /* $.group_specifier, */ $.pattern, ')'),
+    $.non_capturing_group,
+  )
+
+const pattern_character = $ =>
+  // Anything not a SYNTAX_CHAR
+  new RegExp(`[^${SYNTAX_CHARS_ESCAPED}]`)
+
+const non_capturing_group = $ =>
+  seq('(?:', $.pattern, ')')
+
+const quantifier = $ =>
+  seq($.quantifier_prefix, optional('?'))
+
+const quantifier_prefix = $ => choice(
+  '*', '+', '?',
+  // $.range_quantifier,
+)
+
+const atom_escape = $ => choice(
+  // $.decimal_escape,
+  $.character_class_escape,
+  $.character_escape,
+  // seq('k', $.group_name),
+)
+
+const character_class_escape = $ => /[dDsSwW]/
+
+const character_escape = $ => choice(
+  $.control_escape,
+  seq('c', $.control_letter)
+  // 0[lookahead ∉ DecimalDigit]
+)
+
+const control_escape = $ => /[fnrtv]/
+const control_letter = $ => /[a-zA-Z]/
+
+const SYNTAX_CHARS = [
   ...'^$\\.*+?()[]{}|'
 ]
 
-const escapedSyntaxChars = syntaxChars.map(
+const SYNTAX_CHARS_ESCAPED = SYNTAX_CHARS.map(
   char => `\\${char}`
 ).join('')
 
@@ -12,61 +77,15 @@ module.exports = grammar({
   extras: $ => [],
 
   rules: {
-    pattern: $ => choice(
-      $.term,
-      $.disjunction
-    ),
-
-    disjunction: $ => seq(
-      optional($.term), '|', optional($.term)
-    ),
-      // prec.left(0, seq(
-      //   $.term,
-      //   repeat(seq(
-      //     '|',
-      //     $.term   // FIXME: Should be optional?
-      //   ))
-      // )),
-
-    // alternative: $ => $.term,
-
-    term: $ =>
-      // FIXME: should be allowed to be empty
-      prec.left(0, repeat1($.atom, optional($.quantifier))),
-
-    assertion: $ => choice(
-      '^', '$', '\\b', '\\B',
-      seq(
-        '(?',
-        choice('=', '!', '<=', '<!'),
-        $.pattern,
-        ')'
-      )
-    ),
-
-    atom: $ =>
-    choice(
-      $.assertion,
-      $.pattern_character,
-      '.',
-      // seq('\\', $.atom_escape),
-      // $.character_class,
-      // seq('(', /* $.group_specifier, */ $.pattern, ')'),
-      $.non_capturing_group,
-    ),
-
-    non_capturing_group: $ => seq('(?:', $.pattern, ')'),
-
-    pattern_character: $ => new RegExp(`[^${escapedSyntaxChars}]`),
-
-    quantifier: $ => seq(
-      $.quantifier_prefix, optional('?')
-    ),
-
-    quantifier_prefix: $ => choice(
-      '*', '+', '?',
-      // $.range_quantifier,
-    ),
+    pattern,
+    disjunction,      
+    term,
+    assertion,
+    atom,
+    non_capturing_group,
+    pattern_character,
+    quantifier,
+    quantifier_prefix,
 
     //
     // quantifier: $ => seq(
@@ -99,23 +118,12 @@ module.exports = grammar({
     //
     // class_atom: $ => /[^\\\]\-]/,
     //
-    atom_escape: $ => choice(
-      // $.decimal_escape,
-      $.character_class_escape,
-      $.character_escape,
-      // seq('k', $.group_name),
-    ),
 
-    character_class_escape: $ => /[dDsSwW]/,
-
-    character_escape: $ => choice(
-      $.control_escape,
-      seq('c', $.control_letter)
-      // 0[lookahead ∉ DecimalDigit]
-    ),
-
-    control_escape: $ => /[fnrtv]/,
-    control_letter: $ => /[a-zA-Z]/,
+    atom_escape,
+    character_class_escape,
+    character_escape,
+    control_escape,
+    control_letter,
 
     //   // TODO: [+U]p{UnicodePropertyValueExpression}
     //   // TODO: [+U]P{UnicodePropertyValueExpression}

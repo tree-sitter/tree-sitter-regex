@@ -27,6 +27,54 @@ he..o
 ))
 
 ===================
+disjunctions
+===================
+he..o|wo.ld
+---
+
+(pattern (disjunction
+  (term
+    (atom (pattern_character))
+    (atom (pattern_character))
+    (atom)
+    (atom)
+    (atom (pattern_character))
+  )
+  (term
+    (atom (pattern_character))
+    (atom (pattern_character))
+    (atom)
+    (atom (pattern_character))
+    (atom (pattern_character))
+  )
+))
+
+===================
+disjunctions with empty terms
+===================
+he..o||wo.ld
+---
+
+(pattern (disjunction
+  (term
+    (atom (pattern_character))
+    (atom (pattern_character))
+    (atom)
+    (atom)
+    (atom (pattern_character))
+  )
+  (term
+    (atom (pattern_character))
+    (atom (pattern_character))
+    (atom)
+    (atom (pattern_character))
+    (atom (pattern_character))
+  )
+))
+
+
+
+===================
 assertions
 ===================
 ^he..o$
