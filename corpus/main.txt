@@ -33,10 +33,40 @@ h*?e*l+.?
 ---
 
 (pattern (term
-  (atom (pattern_character)) (quantifier (quantifier_prefix))
-  (atom (pattern_character)) (quantifier (quantifier_prefix))
-  (atom (pattern_character)) (quantifier (quantifier_prefix))
-  (atom) (quantifier (quantifier_prefix))
+  (atom (pattern_character))
+    (quantifier (quantifier_prefix) (non_greedy))
+  (atom (pattern_character))
+    (quantifier (quantifier_prefix))
+  (atom (pattern_character))
+    (quantifier (quantifier_prefix))
+  (atom)
+    (quantifier (quantifier_prefix))
+))
+
+
+===================
+quantifiers - count
+===================
+h{1,2}?el{1,2}.{3}
+---
+
+(pattern (term
+  (atom (pattern_character))
+  (quantifier
+    (quantifier_prefix
+      (count_quantifier (decimal_digits) (decimal_digits))
+    )
+    (non_greedy)
+  )
+  (atom (pattern_character))
+  (atom (pattern_character))
+  (quantifier (quantifier_prefix
+    (count_quantifier (decimal_digits) (decimal_digits))
+  ))
+  (atom)
+  (quantifier (quantifier_prefix
+    (count_quantifier (decimal_digits))
+  ))
 ))
 
 ===================

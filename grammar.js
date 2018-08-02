@@ -52,11 +52,17 @@ const non_capturing_group = $ =>
   seq('(?:', $.pattern, ')')
 
 const quantifier = $ =>
-  seq($.quantifier_prefix, optional('?'))
+  seq($.quantifier_prefix, alias(optional('?'), $.non_greedy))
 
 const quantifier_prefix = $ => choice(
   '*', '+', '?',
-  // $.range_quantifier,
+  $.count_quantifier,
+)
+
+const count_quantifier = $ => seq(
+  '{',
+  seq($.decimal_digits, optional(',', $.decimal_digits)),
+  '}'
 )
 
 const atom_escape = $ => choice(
@@ -67,6 +73,8 @@ const atom_escape = $ => choice(
 )
 
 const character_class_escape = $ => /[dDsSwW]/
+  // TODO: [+U]p{UnicodePropertyValueExpression}
+  // TODO: [+U]P{UnicodePropertyValueExpression}
 
 const character_escape = $ => choice(
   $.control_escape,
@@ -75,7 +83,10 @@ const character_escape = $ => choice(
 )
 
 const control_escape = $ => /[fnrtv]/
+
 const control_letter = $ => /[a-zA-Z]/
+
+const decimal_digits = $ => /[0-9]+/
 
 const SYNTAX_CHARS = [
   ...'^$\\.*+?()[]{}|'
@@ -101,6 +112,7 @@ module.exports = grammar({
     pattern_character,
     quantifier,
     quantifier_prefix,
+    count_quantifier,
 
     //
     // quantifier: $ => seq(
@@ -128,11 +140,11 @@ module.exports = grammar({
     control_escape,
     control_letter,
 
-    //   // TODO: [+U]p{UnicodePropertyValueExpression}
-    //   // TODO: [+U]P{UnicodePropertyValueExpression}
+    decimal_digits,
+
     //
     // // group_name: $ => seq('<')
     //
-    // decimal_digits: $ => /[0-9]+/
+    //
   }
 })

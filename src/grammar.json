@@ -258,16 +258,21 @@
           "name": "quantifier_prefix"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "?"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "ALIAS",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "?"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          "named": true,
+          "value": "non_greedy"
         }
       ]
     },
@@ -285,6 +290,53 @@
         {
           "type": "STRING",
           "value": "?"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "count_quantifier"
+        }
+      ]
+    },
+    "count_quantifier": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "decimal_digits"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": ","
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "decimal_digits"
+                    }
+                  ]
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "}"
         }
       ]
     },
@@ -334,6 +386,10 @@
     "control_letter": {
       "type": "PATTERN",
       "value": "[a-zA-Z]"
+    },
+    "decimal_digits": {
+      "type": "PATTERN",
+      "value": "[0-9]+"
     }
   },
   "extras": [],
