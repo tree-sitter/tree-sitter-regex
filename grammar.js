@@ -15,7 +15,7 @@ const atom = $ =>
     $.pattern_character,
     $.character_class,
     '.',
-    // seq('\\', $.atom_escape),
+    seq('\\', $.atom_escape),
     // seq('(', /* $.group_specifier, */ $.pattern, ')'),
     $.non_capturing_group,
   )

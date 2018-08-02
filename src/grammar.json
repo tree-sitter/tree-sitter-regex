@@ -99,6 +99,19 @@
           "value": "."
         },
         {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "\\"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "atom_escape"
+            }
+          ]
+        },
+        {
           "type": "SYMBOL",
           "name": "non_capturing_group"
         }

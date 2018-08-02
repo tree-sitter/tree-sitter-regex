@@ -228,3 +228,15 @@ Jack(?:Sprat)
       (atom (pattern_character))
     ))))
 ))
+
+===================
+atom escapes - character classes
+===================
+\S\w\cZ
+---
+
+(pattern (term
+  (atom (atom_escape (character_class_escape)))
+  (atom (atom_escape (character_class_escape)))
+  (atom (atom_escape (character_escape (control_letter))))
+))
