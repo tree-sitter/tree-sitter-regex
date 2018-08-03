@@ -375,8 +375,78 @@
       "value": "[1-9][0-9]+"
     },
     "character_class_escape": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "[dDsSwW]"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "PATTERN",
+              "value": "[pP]"
+            },
+            {
+              "type": "STRING",
+              "value": "{"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "unicode_property_value_expression"
+            },
+            {
+              "type": "STRING",
+              "value": "}"
+            }
+          ]
+        }
+      ]
+    },
+    "unicode_property_value_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "unicode_property"
+                  },
+                  "named": true,
+                  "value": "unicode_property_name"
+                },
+                {
+                  "type": "STRING",
+                  "value": "="
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "unicode_property"
+          },
+          "named": true,
+          "value": "unicode_property_value"
+        }
+      ]
+    },
+    "unicode_property": {
       "type": "PATTERN",
-      "value": "[dDsSwW]"
+      "value": "[a-zA-Z_0-9]+"
     },
     "character_escape": {
       "type": "CHOICE",

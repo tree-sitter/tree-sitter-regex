@@ -74,9 +74,17 @@ const atom_escape = $ => choice(
 
 const decimal_escape = $ => /[1-9][0-9]+/
 
-const character_class_escape = $ => /[dDsSwW]/
-  // TODO: [+U]p{UnicodePropertyValueExpression}
-  // TODO: [+U]P{UnicodePropertyValueExpression}
+const character_class_escape = $ => choice(
+  /[dDsSwW]/,
+  seq(/[pP]/, '{', $.unicode_property_value_expression, '}')
+)
+
+const unicode_property_value_expression = $ => seq(
+  optional(seq(alias($.unicode_property, $.unicode_property_name), '=')),
+  alias($.unicode_property, $.unicode_property_value)
+)
+
+const unicode_property = $ => /[a-zA-Z_0-9]+/
 
 const character_escape = $ => choice(
   $.control_escape,
@@ -121,6 +129,8 @@ module.exports = grammar({
     atom_escape,
     decimal_escape,
     character_class_escape,
+    unicode_property_value_expression,
+    unicode_property,
     character_escape,
     control_escape,
     control_letter,

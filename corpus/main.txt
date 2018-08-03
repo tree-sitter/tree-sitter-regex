@@ -230,7 +230,7 @@ Jack(?:Sprat)
 ))
 
 ===================
-atom escapes - character classes
+atom escapes - character class escapes
 ===================
 \S\w\cZ
 ---
@@ -264,4 +264,33 @@ atom escapes - decimal escapes
 
 (pattern (term
   (atom (atom_escape (decimal_escape)))
+))
+
+===================
+atom escapes - unicode property value expressions
+===================
+\p{General_Category=Decimal_Number}
+---
+
+(pattern (term
+  (atom (atom_escape (character_class_escape
+    (unicode_property_value_expression
+      (unicode_property_name)
+      (unicode_property_value)
+    )
+  )))
+))
+
+===================
+atom escapes - lone unicode property names
+===================
+\p{Dec2imal_Number}
+---
+
+(pattern (term
+  (atom (atom_escape (character_class_escape
+    (unicode_property_value_expression
+      (unicode_property_value)
+    )
+  )))
 ))
