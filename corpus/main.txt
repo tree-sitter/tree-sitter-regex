@@ -284,7 +284,7 @@ atom escapes - unicode property value expressions
 ===================
 atom escapes - lone unicode property names
 ===================
-\p{Dec2imal_Number}
+\p{Decimal_Number}
 ---
 
 (pattern (term
@@ -293,4 +293,40 @@ atom escapes - lone unicode property names
       (unicode_property_value)
     )
   )))
+))
+
+===================
+capturing groups
+===================
+hello (.*)
+---
+
+(pattern (term
+  (atom (pattern_character))
+  (atom (pattern_character))
+  (atom (pattern_character))
+  (atom (pattern_character))
+  (atom (pattern_character))
+  (atom (pattern_character))
+  (atom (anonymous_capturing_group
+    (pattern (term
+      (atom) (quantifier (quantifier_prefix))
+    ))
+  ))
+))
+
+
+===================
+named capturing groups
+===================
+(?<world>.*)
+---
+
+(pattern (term
+  (atom (named_capturing_group
+    (group_name)
+    (pattern (term
+      (atom) (quantifier (quantifier_prefix))
+    ))
+  ))
 ))

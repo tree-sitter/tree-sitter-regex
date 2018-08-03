@@ -113,6 +113,14 @@
         },
         {
           "type": "SYMBOL",
+          "name": "anonymous_capturing_group"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "named_capturing_group"
+        },
+        {
+          "type": "SYMBOL",
           "name": "non_capturing_group"
         }
       ]
@@ -478,9 +486,72 @@
       "type": "PATTERN",
       "value": "[a-zA-Z]"
     },
+    "anonymous_capturing_group": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "pattern"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "named_capturing_group": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "(?<"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "group_name"
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "pattern"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "group_specifier": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "?<"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "group_name"
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        }
+      ]
+    },
+    "group_name": {
+      "type": "PATTERN",
+      "value": "[A-Za-z0-9]+"
+    },
     "decimal_digits": {
       "type": "PATTERN",
-      "value": "[0-9]+"
+      "value": "\\d+"
     }
   },
   "extras": [],

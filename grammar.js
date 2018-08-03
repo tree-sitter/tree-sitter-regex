@@ -16,7 +16,8 @@ const atom = $ =>
     $.character_class,
     '.',
     seq('\\', $.atom_escape),
-    // seq('(', /* $.group_specifier, */ $.pattern, ')'),
+    $.anonymous_capturing_group,
+    $.named_capturing_group,
     $.non_capturing_group,
   )
 
@@ -47,6 +48,12 @@ const class_range = $ =>
 const class_atom = $ =>
   // NOT: \ ] or -
   /[^\\\]\-]/
+
+const anonymous_capturing_group = $ =>
+  seq('(', $.pattern, ')')
+
+const named_capturing_group = $ =>
+  seq('(?<', $.group_name, '>', $.pattern, ')')
 
 const non_capturing_group = $ =>
   seq('(?:', $.pattern, ')')
@@ -99,7 +106,13 @@ const control_escape = $ => /[fnrtv0]/
 
 const control_letter = $ => /[a-zA-Z]/
 
-const decimal_digits = $ => /[0-9]+/
+const group_specifier = $ => seq(
+  '?<', $.group_name, '>'
+)
+
+const group_name = $ => /[A-Za-z0-9]+/
+
+const decimal_digits = $ => /\d+/
 
 const SYNTAX_CHARS = [
   ...'^$\\.*+?()[]{}|'
@@ -134,6 +147,10 @@ module.exports = grammar({
     character_escape,
     control_escape,
     control_letter,
+    anonymous_capturing_group,
+    named_capturing_group,
+    group_specifier,
+    group_name,
     decimal_digits,
 
     //
