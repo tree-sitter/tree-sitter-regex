@@ -240,3 +240,28 @@ atom escapes - character classes
   (atom (atom_escape (character_class_escape)))
   (atom (atom_escape (character_escape (control_letter))))
 ))
+
+===================
+atom escapes - control escapes
+===================
+\f\n\r\t\v\0
+---
+
+(pattern (term
+  (atom (atom_escape (character_escape (control_escape))))
+  (atom (atom_escape (character_escape (control_escape))))
+  (atom (atom_escape (character_escape (control_escape))))
+  (atom (atom_escape (character_escape (control_escape))))
+  (atom (atom_escape (character_escape (control_escape))))
+  (atom (atom_escape (character_escape (control_escape))))
+))
+
+===================
+atom escapes - decimal escapes
+===================
+\8230
+---
+
+(pattern (term
+  (atom (atom_escape (decimal_escape)))
+))

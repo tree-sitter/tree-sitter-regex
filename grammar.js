@@ -61,16 +61,18 @@ const quantifier_prefix = $ => choice(
 
 const count_quantifier = $ => seq(
   '{',
-  seq($.decimal_digits, optional(',', $.decimal_digits)),
+  seq($.decimal_digits, optional(seq(',', $.decimal_digits))),
   '}'
 )
 
 const atom_escape = $ => choice(
-  // $.decimal_escape,
+  $.decimal_escape,
   $.character_class_escape,
   $.character_escape,
   // seq('k', $.group_name),
 )
+
+const decimal_escape = $ => /[1-9][0-9]+/
 
 const character_class_escape = $ => /[dDsSwW]/
   // TODO: [+U]p{UnicodePropertyValueExpression}
@@ -79,10 +81,13 @@ const character_class_escape = $ => /[dDsSwW]/
 const character_escape = $ => choice(
   $.control_escape,
   seq('c', $.control_letter)
-  // 0[lookahead ∉ DecimalDigit]
 )
 
-const control_escape = $ => /[fnrtv]/
+// TODO: We should technically not accept \0 unless the
+// lookahead is not also a digit.
+// I think this has little bearing on the highlighting of
+// correct regexes.
+const control_escape = $ => /[fnrtv0]/
 
 const control_letter = $ => /[a-zA-Z]/
 
@@ -113,33 +118,12 @@ module.exports = grammar({
     quantifier,
     quantifier_prefix,
     count_quantifier,
-
-    //
-    // quantifier: $ => seq(
-    //   $.quantifier_prefix, optional('?')
-    // ),
-    //
-    // quantifier_prefix: $ => choice(
-    //   '*', '+', '?',
-    //   $.range_quantifier,
-    // ),
-    //
-    // range_quantifier: $ => seq(
-    //   '{',
-    //   seq($.decimal_digits, optional(',', $.decimal_digits)),
-    //   '}'
-    // ),
-    //
-    //
-    //
-    //
-
     atom_escape,
+    decimal_escape,
     character_class_escape,
     character_escape,
     control_escape,
     control_letter,
-
     decimal_digits,
 
     //

@@ -358,6 +358,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "decimal_escape"
+        },
+        {
+          "type": "SYMBOL",
           "name": "character_class_escape"
         },
         {
@@ -365,6 +369,10 @@
           "name": "character_escape"
         }
       ]
+    },
+    "decimal_escape": {
+      "type": "PATTERN",
+      "value": "[1-9][0-9]+"
     },
     "character_class_escape": {
       "type": "PATTERN",
@@ -394,7 +402,7 @@
     },
     "control_escape": {
       "type": "PATTERN",
-      "value": "[fnrtv]"
+      "value": "[fnrtv0]"
     },
     "control_letter": {
       "type": "PATTERN",
