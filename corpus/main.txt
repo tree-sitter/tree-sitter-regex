@@ -95,7 +95,7 @@ he..o|wo.ld
 ===================
 disjunctions with empty terms
 ===================
-he..o||wo.ld
+||he..o||wo.ld|||
 ---
 
 (pattern (disjunction
@@ -206,6 +206,31 @@ character classes
   (atom (character_class
     (class_range (class_atom))
     (class_range (class_atom))
+  ))
+))
+
+===================
+character classes - '-' is an atom
+===================
+[-]
+---
+(pattern (term
+  (atom (character_class
+    (class_range (class_atom))
+  ))
+))
+
+===================
+character classes - identity escapes
+===================
+[\-\.]
+---
+(pattern (term
+  (atom (character_class
+    (class_range (class_atom (class_escape)))
+    (class_range (class_atom (class_escape
+      (character_escape (identity_escape))
+    )))
   ))
 ))
 
@@ -329,4 +354,61 @@ named capturing groups
       (atom) (quantifier (quantifier_prefix))
     ))
   ))
+))
+
+===================
+a url regex
+===================
+[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)
+---
+
+(pattern (term
+  (atom (character_class
+    (class_range (class_atom))
+    (class_range (class_atom) (class_atom))
+    (class_range (class_atom) (class_atom))
+    (class_range (class_atom) (class_atom))
+    (class_range (class_atom))
+    (class_range (class_atom))
+    (class_range (class_atom))
+    (class_range (class_atom))
+    (class_range (class_atom))
+    (class_range (class_atom (class_escape (character_escape (identity_escape)))))
+    (class_range (class_atom))
+    (class_range (class_atom))
+    (class_range (class_atom))
+  ))
+  (quantifier (quantifier_prefix (count_quantifier
+    (decimal_digits) (decimal_digits)
+  )))
+  (atom (atom_escape (character_escape (identity_escape))))
+  (atom (character_class (class_range (class_atom) (class_atom))))
+  (quantifier (quantifier_prefix (count_quantifier
+    (decimal_digits) (decimal_digits)
+  )))
+  (atom (assertion))
+  (atom (anonymous_capturing_group (pattern (term
+    (atom (character_class
+      (class_range (class_atom))
+      (class_range (class_atom) (class_atom))
+      (class_range (class_atom) (class_atom))
+      (class_range (class_atom) (class_atom))
+      (class_range (class_atom))
+      (class_range (class_atom))
+      (class_range (class_atom))
+      (class_range (class_atom))
+      (class_range (class_atom (class_escape
+        (character_escape (identity_escape))
+      )))
+      (class_range (class_atom))
+      (class_range (class_atom))
+      (class_range (class_atom))
+      (class_range (class_atom))
+      (class_range (class_atom))
+      (class_range (class_atom))
+      (class_range (class_atom))
+      (class_range (class_atom))
+    ))
+    (quantifier (quantifier_prefix))
+  ))))
 ))

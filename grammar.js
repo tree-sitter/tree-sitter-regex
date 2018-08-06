@@ -42,12 +42,23 @@ const character_class = $ => seq(
   ']'
 )
 
-const class_range = $ =>
+const class_range = $ => prec.right(
   seq($.class_atom, optional(seq('-', $.class_atom)))
+)
 
-const class_atom = $ =>
+const class_atom = $ => choice(
+  '-',
   // NOT: \ ] or -
-  /[^\\\]\-]/
+  /[^\\\]\-]/,
+  seq('\\', $.class_escape),
+)
+
+const class_escape = $ => choice(
+  'b',
+  '-',
+  $.character_class_escape,
+  $.character_escape,
+)
 
 const anonymous_capturing_group = $ =>
   seq('(', $.pattern, ')')
@@ -95,8 +106,11 @@ const unicode_property = $ => /[a-zA-Z_0-9]+/
 
 const character_escape = $ => choice(
   $.control_escape,
-  seq('c', $.control_letter)
+  seq('c', $.control_letter),
+  $.identity_escape
 )
+
+const identity_escape = $ => new RegExp(`[${SYNTAX_CHARS_ESCAPED}]`)
 
 // TODO: We should technically not accept \0 unless the
 // lookahead is not also a digit.
@@ -106,10 +120,32 @@ const control_escape = $ => /[fnrtv0]/
 
 const control_letter = $ => /[a-zA-Z]/
 
-const group_specifier = $ => seq(
-  '?<', $.group_name, '>'
-)
-
+// TODO: This is an approximation of RegExpIdentifierName in the
+// formal grammar, which allows for Unicode names through
+// the following mechanism:
+//
+// RegExpIdentifierName[U]::
+//   RegExpIdentifierStart[?U]
+//   RegExpIdentifierName[?U]RegExpIdentifierPart[?U]
+//
+// RegExpIdentifierStart[U]::
+//   UnicodeIDStart
+//   $
+//   _
+//   \RegExpUnicodeEscapeSequence[?U]
+//
+// RegExpIdentifierPart[U]::
+//   UnicodeIDContinue
+//   $
+//   \RegExpUnicodeEscapeSequence[?U]
+//   <ZWNJ> <ZWJ>
+// RegExpUnicodeEscapeSequence[U]::
+//   [+U]uLeadSurrogate\uTrailSurrogate
+//   [+U]uLeadSurrogate
+//   [+U]uTrailSurrogate
+//   [+U]uNonSurrogate
+//   [~U]uHex4Digits
+//   [+U]u{CodePoint}
 const group_name = $ => /[A-Za-z0-9]+/
 
 const decimal_digits = $ => /\d+/
@@ -134,7 +170,7 @@ module.exports = grammar({
     atom,
     non_capturing_group,
     assertion,
-    character_class, class_range, class_atom,
+    character_class, class_range, class_atom, class_escape,
     pattern_character,
     quantifier,
     quantifier_prefix,
@@ -145,17 +181,12 @@ module.exports = grammar({
     unicode_property_value_expression,
     unicode_property,
     character_escape,
+    identity_escape,
     control_escape,
     control_letter,
     anonymous_capturing_group,
     named_capturing_group,
-    group_specifier,
     group_name,
     decimal_digits,
-
-    //
-    // // group_name: $ => seq('<')
-    //
-    //
   }
 })
