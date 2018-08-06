@@ -221,6 +221,17 @@ character classes - '-' is an atom
 ))
 
 ===================
+character classes - /[---]/ is odd but valid
+===================
+[---]
+---
+(pattern (term
+  (atom (character_class
+    (class_range (class_atom) (class_atom))
+  ))
+))
+
+===================
 character classes - identity escapes
 ===================
 [\-\.]
