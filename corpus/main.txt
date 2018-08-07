@@ -195,8 +195,8 @@ character classes
     (class_range (class_character) (class_character))
   )
   (character_class
-    (class_range (class_character))
-    (class_range (class_character))
+    (class_character)
+    (class_character)
   )
 ))
 
@@ -207,7 +207,7 @@ character classes - '-' is an atom
 ---
 (pattern (term
   (character_class
-    (class_range (class_character))
+    (class_character)
   )
 ))
 
@@ -229,8 +229,8 @@ character classes - identity escapes
 ---
 (pattern (term
   (character_class
-    (class_range (identity_escape))
-    (class_range (identity_escape))
+    (identity_escape)
+    (identity_escape)
   )
 ))
 
@@ -406,19 +406,19 @@ a multiline url regex
 
 (pattern (term
   (character_class
-    (class_range (class_character))
+    (class_character)
     (class_range (class_character) (class_character))
     (class_range (class_character) (class_character))
     (class_range (class_character) (class_character))
-    (class_range (class_character))
-    (class_range (class_character))
-    (class_range (class_character))
-    (class_range (class_character))
-    (class_range (class_character))
-    (class_range (identity_escape))
-    (class_range (class_character))
-    (class_range (class_character))
-    (class_range (class_character))
+    (class_character)
+    (class_character)
+    (class_character)
+    (class_character)
+    (class_character)
+    (identity_escape)
+    (class_character)
+    (class_character)
+    (class_character)
   )
   (count_quantifier (decimal_digits) (decimal_digits))
   (identity_escape)
@@ -427,23 +427,23 @@ a multiline url regex
   (boundary_assertion)
   (anonymous_capturing_group (pattern (term
     (character_class
-      (class_range (class_character))
+      (class_character)
       (class_range (class_character) (class_character))
       (class_range (class_character) (class_character))
       (class_range (class_character) (class_character))
-      (class_range (class_character))
-      (class_range (class_character))
-      (class_range (class_character))
-      (class_range (class_character))
-      (class_range (identity_escape))
-      (class_range (class_character))
-      (class_range (class_character))
-      (class_range (class_character))
-      (class_range (class_character))
-      (class_range (class_character))
-      (class_range (class_character))
-      (class_range (class_character))
-      (class_range (class_character))
+      (class_character)
+      (class_character)
+      (class_character)
+      (class_character)
+      (identity_escape)
+      (class_character)
+      (class_character)
+      (class_character)
+      (class_character)
+      (class_character)
+      (class_character)
+      (class_character)
+      (class_character)
     )
     (zero_or_more)
   )))

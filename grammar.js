@@ -75,12 +75,15 @@ module.exports = grammar({
     , character_class: $ => seq(
       '[',
       optional('^'),
-      repeat($.class_range),
+      repeat(choice(
+        $.class_range,
+        $._class_atom
+      )),
       ']'
     )
 
-    , class_range: $ => prec.right(
-      seq($._class_atom, optional(seq('-', $._class_atom)))
+    , class_range: $ => prec.right(1,
+      seq($._class_atom, '-', $._class_atom)
     )
 
     , _class_atom: $ => choice(
