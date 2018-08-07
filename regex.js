@@ -15,7 +15,7 @@ const atom = $ =>
     $.pattern_character,
     $.character_class,
     '.',
-    seq('\\', $.atom_escape),
+    $.atom_escape,
     $.anonymous_capturing_group,
     $.named_capturing_group,
     $.non_capturing_group,
@@ -50,15 +50,15 @@ const class_atom = $ => choice(
   '-',
   // NOT: \ ] or -
   /[^\\\]\-]/,
-  seq('\\', $.class_escape),
+  $.class_escape,
 )
 
-const class_escape = $ => choice(
+const class_escape = $ => seq('\\', choice(
   'b',
   '-',
   $.character_class_escape,
   $.character_escape,
-)
+))
 
 const anonymous_capturing_group = $ =>
   seq('(', $.pattern, ')')
@@ -83,12 +83,12 @@ const count_quantifier = $ => seq(
   '}'
 )
 
-const atom_escape = $ => choice(
+const atom_escape = $ => seq('\\', choice(
   $.decimal_escape,
   $.character_class_escape,
   $.character_escape,
   // seq('k', $.group_name),
-)
+))
 
 const decimal_escape = $ => /[1-9][0-9]+/
 

@@ -99,17 +99,8 @@
           "value": "."
         },
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "\\"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "atom_escape"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "atom_escape"
         },
         {
           "type": "SYMBOL",
@@ -279,38 +270,38 @@
           "value": "[^\\\\\\]\\-]"
         },
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "\\"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "class_escape"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "class_escape"
         }
       ]
     },
     "class_escape": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
           "type": "STRING",
-          "value": "b"
+          "value": "\\"
         },
         {
-          "type": "STRING",
-          "value": "-"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "character_class_escape"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "character_escape"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "b"
+            },
+            {
+              "type": "STRING",
+              "value": "-"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "character_class_escape"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "character_escape"
+            }
+          ]
         }
       ]
     },
@@ -409,19 +400,28 @@
       ]
     },
     "atom_escape": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "decimal_escape"
+          "type": "STRING",
+          "value": "\\"
         },
         {
-          "type": "SYMBOL",
-          "name": "character_class_escape"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "character_escape"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "decimal_escape"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "character_class_escape"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "character_escape"
+            }
+          ]
         }
       ]
     },
