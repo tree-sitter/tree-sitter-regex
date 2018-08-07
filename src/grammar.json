@@ -161,23 +161,6 @@
       "type": "STRING",
       "value": "."
     },
-    "non_capturing_group": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "(?:"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "pattern"
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        }
-      ]
-    },
     "start_assertion": {
       "type": "STRING",
       "value": "^"
@@ -231,6 +214,10 @@
           "value": ")"
         }
       ]
+    },
+    "pattern_character": {
+      "type": "PATTERN",
+      "value": "[^\\^\\$\\\\\\.\\*\\+\\?\\(\\)\\[\\]\\{\\}\\|\\n]"
     },
     "character_class": {
       "type": "SEQ",
@@ -333,9 +320,64 @@
         }
       ]
     },
-    "pattern_character": {
-      "type": "PATTERN",
-      "value": "[^\\^\\$\\\\\\.\\*\\+\\?\\(\\)\\[\\]\\{\\}\\|\\n]"
+    "anonymous_capturing_group": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "pattern"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "named_capturing_group": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "(?<"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "group_name"
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "pattern"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "non_capturing_group": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "(?:"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "pattern"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
     },
     "zero_or_more": {
       "type": "SEQ",
@@ -480,6 +522,19 @@
         }
       ]
     },
+    "backreference_escape": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\k"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "group_name"
+        }
+      ]
+    },
     "decimal_escape": {
       "type": "PATTERN",
       "value": "\\\\[1-9][0-9]+"
@@ -520,36 +575,6 @@
               ]
             }
           ]
-        }
-      ]
-    },
-    "_character_escape": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "control_escape"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "control_letter_escape"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "identity_escape"
-        }
-      ]
-    },
-    "backreference_escape": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "\\k"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "group_name"
         }
       ]
     },
@@ -597,6 +622,23 @@
       "type": "PATTERN",
       "value": "[a-zA-Z_0-9]+"
     },
+    "_character_escape": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "control_escape"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "control_letter_escape"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identity_escape"
+        }
+      ]
+    },
     "identity_escape": {
       "type": "PATTERN",
       "value": "\\\\[\\^\\$\\\\\\.\\*\\+\\?\\(\\)\\[\\]\\{\\}\\|]"
@@ -608,48 +650,6 @@
     "control_letter_escape": {
       "type": "PATTERN",
       "value": "\\\\c[a-zA-Z]"
-    },
-    "anonymous_capturing_group": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "SYMBOL",
-          "name": "pattern"
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        }
-      ]
-    },
-    "named_capturing_group": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "(?<"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "group_name"
-        },
-        {
-          "type": "STRING",
-          "value": ">"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "pattern"
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        }
-      ]
     },
     "group_name": {
       "type": "PATTERN",
