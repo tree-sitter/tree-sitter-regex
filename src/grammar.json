@@ -259,7 +259,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "class_atom"
+            "name": "_class_atom"
           },
           {
             "type": "CHOICE",
@@ -273,7 +273,7 @@
                   },
                   {
                     "type": "SYMBOL",
-                    "name": "class_atom"
+                    "name": "_class_atom"
                   }
                 ]
               },
@@ -285,40 +285,44 @@
         ]
       }
     },
-    "class_atom": {
+    "_class_atom": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "-"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "-"
+          },
+          "named": true,
+          "value": "class_character"
         },
         {
-          "type": "PATTERN",
-          "value": "[^\\\\\\]\\-]"
+          "type": "SYMBOL",
+          "name": "class_character"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "STRING",
-                "value": "\\-"
-              },
-              "named": true,
-              "value": "identity_escape"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "character_class_escape"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_character_escape"
-            }
-          ]
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "\\-"
+          },
+          "named": true,
+          "value": "identity_escape"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "character_class_escape"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_character_escape"
         }
       ]
+    },
+    "class_character": {
+      "type": "PATTERN",
+      "value": "[^\\\\\\]\\-]"
     },
     "anonymous_capturing_group": {
       "type": "SEQ",
@@ -669,6 +673,7 @@
   "conflicts": [],
   "externals": [],
   "inline": [
-    "_character_escape"
+    "_character_escape",
+    "_class_atom"
   ]
 }

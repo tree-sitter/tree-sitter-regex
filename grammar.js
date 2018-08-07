@@ -14,7 +14,10 @@ const SYNTAX_CHARS_ESCAPED = SYNTAX_CHARS.map(
 module.exports = grammar({
   name: 'regex',
   extras: $ => ['\n'],
-  inline: $ => [$._character_escape],
+  inline: $ => [
+    $._character_escape,
+    $._class_atom,
+  ],
   rules: {
     pattern: $ => choice(
       $.disjunction,
@@ -77,19 +80,20 @@ module.exports = grammar({
     )
 
     , class_range: $ => prec.right(
-      seq($.class_atom, optional(seq('-', $.class_atom)))
+      seq($._class_atom, optional(seq('-', $._class_atom)))
     )
 
-    , class_atom: $ => choice(
-      '-',
-      // NOT: \ ] or -
-      /[^\\\]\-]/,
-      choice(
-        alias('\\-', $.identity_escape),
-        $.character_class_escape,
-        $._character_escape,
-      )
+    , _class_atom: $ => choice(
+      alias('-', $.class_character),
+      $.class_character,
+      alias('\\-', $.identity_escape),
+      $.character_class_escape,
+      $._character_escape,
     )
+
+    , class_character: $ =>
+      // NOT: \ ] or -
+      /[^\\\]\-]/
 
     , anonymous_capturing_group: $ =>
       seq('(', $.pattern, ')')
