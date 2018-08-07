@@ -7,29 +7,45 @@ const disjunction = $ =>
   seq(optional($.term), repeat1(seq('|', optional($.term))))
 
 const term = $ =>
-  repeat1(seq($.atom, optional($.quantifier)))
+  repeat1(seq(
+    choice(
+      $.start_assertion,
+      $.end_assertion,
+      $.boundary_assertion,
+      $.non_boundary_assertion,
+      $.lookahead_assertion,
+      $.pattern_character,
+      $.character_class,
+      $.any_character,
+      $.decimal_escape,
+      $.character_class_escape,
+      $._character_escape,
+      $.backreference_escape,
+      $.anonymous_capturing_group,
+      $.named_capturing_group,
+      $.non_capturing_group,
+    ),
+    optional(choice(
+      $.zero_or_more,
+      $.one_or_more,
+      $.optional,
+      $.count_quantifier,
+    ))
+  ))
 
-const atom = $ =>
-  choice(
-    $.assertion,
-    $.pattern_character,
-    $.character_class,
-    '.',
-    $.atom_escape,
-    $.anonymous_capturing_group,
-    $.named_capturing_group,
-    $.non_capturing_group,
-  )
+const any_character = $ => '.'
 
-const assertion = $ => choice(
-  '^', '$', '\\b', '\\B',
+const start_assertion = $ => '^'
+const end_assertion = $ => '$'
+const boundary_assertion = $ => '\\b'
+const non_boundary_assertion = $ => '\\B'
+const lookahead_assertion = $ =>
   seq(
     '(?',
     choice('=', '!', '<=', '<!'),
     $.pattern,
     ')'
   )
-)
 
 const pattern_character = $ =>
   // Anything not a SYNTAX_CHAR
@@ -50,15 +66,12 @@ const class_atom = $ => choice(
   '-',
   // NOT: \ ] or -
   /[^\\\]\-]/,
-  $.class_escape,
+  choice(
+    alias('\\-', $.identity_escape),
+    $.character_class_escape,
+    $._character_escape,
+  )
 )
-
-const class_escape = $ => seq('\\', choice(
-  'b',
-  '-',
-  $.character_class_escape,
-  $.character_escape,
-))
 
 const anonymous_capturing_group = $ =>
   seq('(', $.pattern, ')')
@@ -69,33 +82,28 @@ const named_capturing_group = $ =>
 const non_capturing_group = $ =>
   seq('(?:', $.pattern, ')')
 
-const quantifier = $ =>
-  seq($.quantifier_prefix, alias(optional('?'), $.non_greedy))
-
-const quantifier_prefix = $ => choice(
-  '*', '+', '?',
-  $.count_quantifier,
+const quantifierRule = prefix => $ => seq(
+  prefix($),
+  optional(alias('?', $.lazy))
 )
 
-const count_quantifier = $ => seq(
+const zero_or_more = quantifierRule($ => '*')
+const one_or_more = quantifierRule($ => '+')
+const optional_quantifier = quantifierRule($ => '?')
+const count_quantifier = quantifierRule($ => seq(
   '{',
   seq($.decimal_digits, optional(seq(',', $.decimal_digits))),
   '}'
-)
-
-const atom_escape = $ => seq('\\', choice(
-  $.decimal_escape,
-  $.character_class_escape,
-  $.character_escape,
-  // seq('k', $.group_name),
 ))
 
-const decimal_escape = $ => /[1-9][0-9]+/
+const backreference_escape = $ => seq('\\k', $.group_name)
 
-const character_class_escape = $ => choice(
+const decimal_escape = $ => /\\[1-9][0-9]+/
+
+const character_class_escape = $ => seq('\\', choice(
   /[dDsSwW]/,
   seq(/[pP]/, '{', $.unicode_property_value_expression, '}')
-)
+))
 
 const unicode_property_value_expression = $ => seq(
   optional(seq(alias($.unicode_property, $.unicode_property_name), '=')),
@@ -104,21 +112,21 @@ const unicode_property_value_expression = $ => seq(
 
 const unicode_property = $ => /[a-zA-Z_0-9]+/
 
-const character_escape = $ => choice(
+const _character_escape = $ => choice(
   $.control_escape,
-  seq('c', $.control_letter),
+  $.control_letter_escape,
   $.identity_escape
 )
 
-const identity_escape = $ => new RegExp(`[${SYNTAX_CHARS_ESCAPED}]`)
+const identity_escape = $ => new RegExp(`\\\\[${SYNTAX_CHARS_ESCAPED}]`)
 
 // TODO: We should technically not accept \0 unless the
 // lookahead is not also a digit.
 // I think this has little bearing on the highlighting of
 // correct regexes.
-const control_escape = $ => /[fnrtv0]/
+const control_escape = $ => /\\[bfnrtv0]/
 
-const control_letter = $ => /[a-zA-Z]/
+const control_letter_escape = $ => /\\c[a-zA-Z]/
 
 // TODO: This is an approximation of RegExpIdentifierName in the
 // formal grammar, which allows for Unicode names through
@@ -162,23 +170,30 @@ module.exports = {
   pattern,
   disjunction,
   term,
-  atom,
+  any_character,
   non_capturing_group,
-  assertion,
-  character_class, class_range, class_atom, class_escape,
+  start_assertion,
+  end_assertion,
+  boundary_assertion,
+  non_boundary_assertion,
+  lookahead_assertion,
+  character_class, class_range, class_atom,
   pattern_character,
-  quantifier,
-  quantifier_prefix,
+  zero_or_more,
+  one_or_more,
+  optional: optional_quantifier,
   count_quantifier,
-  atom_escape,
+  decimal_escape,
+  character_class_escape,
+  _character_escape,
+  backreference_escape,
   decimal_escape,
   character_class_escape,
   unicode_property_value_expression,
   unicode_property,
-  character_escape,
   identity_escape,
   control_escape,
-  control_letter,
+  control_letter_escape,
   anonymous_capturing_group,
   named_capturing_group,
   group_name,

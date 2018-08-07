@@ -5,11 +5,11 @@ hello
 ---
 
 (pattern (term
-  (atom (pattern_character))
-  (atom (pattern_character))
-  (atom (pattern_character))
-  (atom (pattern_character))
-  (atom (pattern_character))
+  (pattern_character)
+  (pattern_character)
+  (pattern_character)
+  (pattern_character)
+  (pattern_character)
 ))
 
 ===================
@@ -19,11 +19,11 @@ he..o
 ---
 
 (pattern (term
-  (atom (pattern_character))
-  (atom (pattern_character))
-  (atom)
-  (atom)
-  (atom (pattern_character))
+  (pattern_character)
+  (pattern_character)
+  (any_character)
+  (any_character)
+  (pattern_character)
 ))
 
 ===================
@@ -33,14 +33,14 @@ h*?e*l+.?
 ---
 
 (pattern (term
-  (atom (pattern_character))
-    (quantifier (quantifier_prefix) (non_greedy))
-  (atom (pattern_character))
-    (quantifier (quantifier_prefix))
-  (atom (pattern_character))
-    (quantifier (quantifier_prefix))
-  (atom)
-    (quantifier (quantifier_prefix))
+  (pattern_character)
+    (zero_or_more (lazy))
+  (pattern_character)
+    (zero_or_more)
+  (pattern_character)
+    (one_or_more)
+  (any_character)
+    (optional)
 ))
 
 
@@ -51,22 +51,13 @@ h{1,2}?el{1,2}.{3}
 ---
 
 (pattern (term
-  (atom (pattern_character))
-  (quantifier
-    (quantifier_prefix
-      (count_quantifier (decimal_digits) (decimal_digits))
-    )
-    (non_greedy)
-  )
-  (atom (pattern_character))
-  (atom (pattern_character))
-  (quantifier (quantifier_prefix
-    (count_quantifier (decimal_digits) (decimal_digits))
-  ))
-  (atom)
-  (quantifier (quantifier_prefix
-    (count_quantifier (decimal_digits))
-  ))
+  (pattern_character)
+  (count_quantifier (decimal_digits) (decimal_digits) (lazy))
+  (pattern_character)
+  (pattern_character)
+  (count_quantifier (decimal_digits) (decimal_digits))
+  (any_character)
+  (count_quantifier (decimal_digits))
 ))
 
 ===================
@@ -77,18 +68,18 @@ he..o|wo.ld
 
 (pattern (disjunction
   (term
-    (atom (pattern_character))
-    (atom (pattern_character))
-    (atom)
-    (atom)
-    (atom (pattern_character))
+    (pattern_character)
+    (pattern_character)
+    (any_character)
+    (any_character)
+    (pattern_character)
   )
   (term
-    (atom (pattern_character))
-    (atom (pattern_character))
-    (atom)
-    (atom (pattern_character))
-    (atom (pattern_character))
+    (pattern_character)
+    (pattern_character)
+    (any_character)
+    (pattern_character)
+    (pattern_character)
   )
 ))
 
@@ -100,18 +91,18 @@ disjunctions with empty terms
 
 (pattern (disjunction
   (term
-    (atom (pattern_character))
-    (atom (pattern_character))
-    (atom)
-    (atom)
-    (atom (pattern_character))
+    (pattern_character)
+    (pattern_character)
+    (any_character)
+    (any_character)
+    (pattern_character)
   )
   (term
-    (atom (pattern_character))
-    (atom (pattern_character))
-    (atom)
-    (atom (pattern_character))
-    (atom (pattern_character))
+    (pattern_character)
+    (pattern_character)
+    (any_character)
+    (pattern_character)
+    (pattern_character)
   )
 ))
 
@@ -122,13 +113,13 @@ assertions - line start / end
 ---
 
 (pattern (term
-  (atom (assertion))
-  (atom (pattern_character))
-  (atom (pattern_character))
-  (atom)
-  (atom)
-  (atom (pattern_character))
-  (atom (assertion))
+  (start_assertion)
+  (pattern_character)
+  (pattern_character)
+  (any_character)
+  (any_character)
+  (pattern_character)
+  (end_assertion)
 ))
 
 ===================
@@ -138,13 +129,13 @@ assertions - word boundary
 ---
 
 (pattern (term
-  (atom (assertion))
-  (atom (pattern_character))
-  (atom (pattern_character))
-  (atom)
-  (atom)
-  (atom (pattern_character))
-  (atom (assertion))
+  (non_boundary_assertion)
+  (pattern_character)
+  (pattern_character)
+  (any_character)
+  (any_character)
+  (pattern_character)
+  (boundary_assertion)
 ))
 
 
@@ -156,20 +147,20 @@ disjunction w empty terms & assertions
 
 (pattern (disjunction
   (term
-    (atom (assertion))
-    (atom (pattern_character))
-    (atom (pattern_character))
-    (atom)
-    (atom)
-    (atom (pattern_character))
-    (atom (assertion)))
+    (start_assertion)
+    (pattern_character)
+    (pattern_character)
+    (any_character)
+    (any_character)
+    (pattern_character)
+    (end_assertion))
   (term
-    (atom (pattern_character))
-    (atom)
-    (atom)
-    (atom (pattern_character))
-    (atom (pattern_character))
-    (atom (assertion)))
+    (pattern_character)
+    (any_character)
+    (any_character)
+    (pattern_character)
+    (pattern_character)
+    (end_assertion))
 ))
 
 ===================
@@ -179,17 +170,17 @@ Jack(?=Sprat)
 ---
 
 (pattern (term
-    (atom (pattern_character))
-    (atom (pattern_character))
-    (atom (pattern_character))
-    (atom (pattern_character))
-    (atom (assertion (pattern (term
-      (atom (pattern_character))
-      (atom (pattern_character))
-      (atom (pattern_character))
-      (atom (pattern_character))
-      (atom (pattern_character))
-    ))))
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)
+    (lookahead_assertion (pattern (term
+      (pattern_character)
+      (pattern_character)
+      (pattern_character)
+      (pattern_character)
+      (pattern_character)
+    )))
 ))
 
 ===================
@@ -199,14 +190,14 @@ character classes
 ---
 
 (pattern (term
-  (atom (character_class
+  (character_class
     (class_range (class_atom) (class_atom))
     (class_range (class_atom) (class_atom))
-  ))
-  (atom (character_class
+  )
+  (character_class
     (class_range (class_atom))
     (class_range (class_atom))
-  ))
+  )
 ))
 
 ===================
@@ -215,9 +206,9 @@ character classes - '-' is an atom
 [-]
 ---
 (pattern (term
-  (atom (character_class
+  (character_class
     (class_range (class_atom))
-  ))
+  )
 ))
 
 ===================
@@ -226,9 +217,9 @@ character classes - /[---]/ is odd but valid
 [---]
 ---
 (pattern (term
-  (atom (character_class
+  (character_class
     (class_range (class_atom) (class_atom))
-  ))
+  )
 ))
 
 ===================
@@ -237,12 +228,10 @@ character classes - identity escapes
 [\-\.]
 ---
 (pattern (term
-  (atom (character_class
-    (class_range (class_atom (class_escape)))
-    (class_range (class_atom (class_escape
-      (character_escape (identity_escape))
-    )))
-  ))
+  (character_class
+    (class_range (class_atom (identity_escape)))
+    (class_range (class_atom (identity_escape)))
+  )
 ))
 
 ===================
@@ -252,17 +241,17 @@ Jack(?:Sprat)
 ---
 
 (pattern (term
-    (atom (pattern_character))
-    (atom (pattern_character))
-    (atom (pattern_character))
-    (atom (pattern_character))
-    (atom (non_capturing_group (pattern (term
-      (atom (pattern_character))
-      (atom (pattern_character))
-      (atom (pattern_character))
-      (atom (pattern_character))
-      (atom (pattern_character))
-    ))))
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)
+    (non_capturing_group (pattern (term
+      (pattern_character)
+      (pattern_character)
+      (pattern_character)
+      (pattern_character)
+      (pattern_character)
+    )))
 ))
 
 ===================
@@ -272,9 +261,9 @@ atom escapes - character class escapes
 ---
 
 (pattern (term
-  (atom (atom_escape (character_class_escape)))
-  (atom (atom_escape (character_class_escape)))
-  (atom (atom_escape (character_escape (control_letter))))
+  (character_class_escape)
+  (character_class_escape)
+  (control_letter_escape)
 ))
 
 ===================
@@ -284,12 +273,12 @@ atom escapes - control escapes
 ---
 
 (pattern (term
-  (atom (atom_escape (character_escape (control_escape))))
-  (atom (atom_escape (character_escape (control_escape))))
-  (atom (atom_escape (character_escape (control_escape))))
-  (atom (atom_escape (character_escape (control_escape))))
-  (atom (atom_escape (character_escape (control_escape))))
-  (atom (atom_escape (character_escape (control_escape))))
+  (control_escape)
+  (control_escape)
+  (control_escape)
+  (control_escape)
+  (control_escape)
+  (control_escape)
 ))
 
 ===================
@@ -299,7 +288,7 @@ atom escapes - decimal escapes
 ---
 
 (pattern (term
-  (atom (atom_escape (decimal_escape)))
+  (decimal_escape)
 ))
 
 ===================
@@ -309,12 +298,12 @@ atom escapes - unicode property value expressions
 ---
 
 (pattern (term
-  (atom (atom_escape (character_class_escape
+  (character_class_escape
     (unicode_property_value_expression
       (unicode_property_name)
       (unicode_property_value)
     )
-  )))
+  )
 ))
 
 ===================
@@ -324,11 +313,11 @@ atom escapes - lone unicode property names
 ---
 
 (pattern (term
-  (atom (atom_escape (character_class_escape
+  (character_class_escape
     (unicode_property_value_expression
       (unicode_property_value)
     )
-  )))
+  )
 ))
 
 ===================
@@ -338,17 +327,17 @@ hello (.*)
 ---
 
 (pattern (term
-  (atom (pattern_character))
-  (atom (pattern_character))
-  (atom (pattern_character))
-  (atom (pattern_character))
-  (atom (pattern_character))
-  (atom (pattern_character))
-  (atom (anonymous_capturing_group
+  (pattern_character)
+  (pattern_character)
+  (pattern_character)
+  (pattern_character)
+  (pattern_character)
+  (pattern_character)
+  (anonymous_capturing_group
     (pattern (term
-      (atom) (quantifier (quantifier_prefix))
+      (any_character) (zero_or_more)
     ))
-  ))
+  )
 ))
 
 
@@ -359,13 +348,30 @@ named capturing groups
 ---
 
 (pattern (term
-  (atom (named_capturing_group
+  (named_capturing_group
     (group_name)
     (pattern (term
-      (atom) (quantifier (quantifier_prefix))
+      (any_character) (zero_or_more)
     ))
-  ))
+  )
 ))
+
+===================
+named capturing groups - backreferences
+===================
+(?<world>.*)\kworld
+---
+
+(pattern (term
+  (named_capturing_group
+    (group_name)
+    (pattern (term
+      (any_character) (zero_or_more)
+    ))
+  )
+  (backreference_escape (group_name))
+))
+
 
 ===================
 a date regex
@@ -373,20 +379,20 @@ a date regex
 (?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})
 ---
 (pattern (term
-  (atom (named_capturing_group (group_name) (pattern (term
-    (atom (character_class (class_range (class_atom) (class_atom))))
-    (quantifier (quantifier_prefix (count_quantifier (decimal_digits))))
-  ))))
-  (atom (pattern_character))
-  (atom (named_capturing_group (group_name) (pattern (term
-    (atom (character_class (class_range (class_atom) (class_atom))))
-    (quantifier (quantifier_prefix (count_quantifier (decimal_digits))))
-  ))))
-  (atom (pattern_character))
-  (atom (named_capturing_group (group_name) (pattern (term
-    (atom (character_class (class_range (class_atom) (class_atom))))
-    (quantifier (quantifier_prefix (count_quantifier (decimal_digits))))
-  ))))
+  (named_capturing_group (group_name) (pattern (term
+    (character_class (class_range (class_atom) (class_atom)))
+    (count_quantifier (decimal_digits))
+  )))
+  (pattern_character)
+  (named_capturing_group (group_name) (pattern (term
+    (character_class (class_range (class_atom) (class_atom)))
+    (count_quantifier (decimal_digits))
+  )))
+  (pattern_character)
+  (named_capturing_group (group_name) (pattern (term
+    (character_class (class_range (class_atom) (class_atom)))
+    (count_quantifier (decimal_digits))
+  )))
 ))
 
 ===================
@@ -399,7 +405,7 @@ a multiline url regex
 ---
 
 (pattern (term
-  (atom (character_class
+  (character_class
     (class_range (class_atom))
     (class_range (class_atom) (class_atom))
     (class_range (class_atom) (class_atom))
@@ -409,42 +415,38 @@ a multiline url regex
     (class_range (class_atom))
     (class_range (class_atom))
     (class_range (class_atom))
-    (class_range (class_atom (class_escape (character_escape (identity_escape)))))
-    (class_range (class_atom))
-    (class_range (class_atom))
-    (class_range (class_atom))
-  ))
-  (quantifier (quantifier_prefix (count_quantifier
-    (decimal_digits) (decimal_digits)
-  )))
-  (atom (atom_escape (character_escape (identity_escape))))
-  (atom (character_class (class_range (class_atom) (class_atom))))
-  (quantifier (quantifier_prefix (count_quantifier
-    (decimal_digits) (decimal_digits)
-  )))
-  (atom (assertion))
-  (atom (anonymous_capturing_group (pattern (term
-    (atom (character_class
-      (class_range (class_atom))
-      (class_range (class_atom) (class_atom))
-      (class_range (class_atom) (class_atom))
-      (class_range (class_atom) (class_atom))
-      (class_range (class_atom))
-      (class_range (class_atom))
-      (class_range (class_atom))
-      (class_range (class_atom))
-      (class_range (class_atom (class_escape
-        (character_escape (identity_escape))
-      )))
-      (class_range (class_atom))
-      (class_range (class_atom))
-      (class_range (class_atom))
-      (class_range (class_atom))
-      (class_range (class_atom))
-      (class_range (class_atom))
-      (class_range (class_atom))
-      (class_range (class_atom))
+    (class_range (class_atom
+      (identity_escape)
     ))
-    (quantifier (quantifier_prefix))
-  ))))
+    (class_range (class_atom))
+    (class_range (class_atom))
+    (class_range (class_atom))
+  )
+  (count_quantifier (decimal_digits) (decimal_digits))
+  (identity_escape)
+  (character_class (class_range (class_atom) (class_atom)))
+  (count_quantifier (decimal_digits) (decimal_digits))
+  (boundary_assertion)
+  (anonymous_capturing_group (pattern (term
+    (character_class
+      (class_range (class_atom))
+      (class_range (class_atom) (class_atom))
+      (class_range (class_atom) (class_atom))
+      (class_range (class_atom) (class_atom))
+      (class_range (class_atom))
+      (class_range (class_atom))
+      (class_range (class_atom))
+      (class_range (class_atom))
+      (class_range (class_atom (identity_escape)))
+      (class_range (class_atom))
+      (class_range (class_atom))
+      (class_range (class_atom))
+      (class_range (class_atom))
+      (class_range (class_atom))
+      (class_range (class_atom))
+      (class_range (class_atom))
+      (class_range (class_atom))
+    )
+    (zero_or_more)
+  )))
 ))
