@@ -1,5 +1,5 @@
 module.exports = grammar({
   name: 'regex',
-  extras: $ => [],
+  extras: $ => ['\n'],
   rules: require('./regex.js')
 })

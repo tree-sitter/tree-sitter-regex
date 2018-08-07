@@ -316,7 +316,7 @@
     },
     "pattern_character": {
       "type": "PATTERN",
-      "value": "[^\\^\\$\\\\\\.\\*\\+\\?\\(\\)\\[\\]\\{\\}\\|]"
+      "value": "[^\\^\\$\\\\\\.\\*\\+\\?\\(\\)\\[\\]\\{\\}\\|\\n]"
     },
     "quantifier": {
       "type": "SEQ",
@@ -592,7 +592,12 @@
       "value": "\\d+"
     }
   },
-  "extras": [],
+  "extras": [
+    {
+      "type": "STRING",
+      "value": "\n"
+    }
+  ],
   "conflicts": [],
   "externals": [],
   "inline": []

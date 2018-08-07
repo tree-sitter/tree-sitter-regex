@@ -33,7 +33,7 @@ const assertion = $ => choice(
 
 const pattern_character = $ =>
   // Anything not a SYNTAX_CHAR
-  new RegExp(`[^${SYNTAX_CHARS_ESCAPED}]`)
+  new RegExp(`[^${SYNTAX_CHARS_ESCAPED}\\n]`)
 
 const character_class = $ => seq(
   '[',
