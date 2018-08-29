@@ -10,7 +10,7 @@
   "author": "Ashi Krishnan <queerviolet@github.com>",
   "license": "MIT",
   "dependencies": {
-    "nan": "^2.0.0"
+    "nan": "^2.10.0"
   },
   "devDependencies": {
     "tree-sitter-cli": "^0.13.1"
