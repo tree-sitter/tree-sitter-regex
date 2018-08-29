@@ -540,39 +540,30 @@
       "value": "\\\\[1-9][0-9]+"
     },
     "character_class_escape": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "\\"
+          "type": "PATTERN",
+          "value": "\\\\[dDsSwW]"
         },
         {
-          "type": "CHOICE",
+          "type": "SEQ",
           "members": [
             {
               "type": "PATTERN",
-              "value": "[dDsSwW]"
+              "value": "\\\\[pP]"
             },
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "PATTERN",
-                  "value": "[pP]"
-                },
-                {
-                  "type": "STRING",
-                  "value": "{"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "unicode_property_value_expression"
-                },
-                {
-                  "type": "STRING",
-                  "value": "}"
-                }
-              ]
+              "type": "STRING",
+              "value": "{"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "unicode_property_value_expression"
+            },
+            {
+              "type": "STRING",
+              "value": "}"
             }
           ]
         }
@@ -639,10 +630,6 @@
         }
       ]
     },
-    "identity_escape": {
-      "type": "PATTERN",
-      "value": "\\\\[\\^\\$\\\\\\.\\*\\+\\?\\(\\)\\[\\]\\{\\}\\|]"
-    },
     "control_escape": {
       "type": "PATTERN",
       "value": "\\\\[bfnrtv0]"
@@ -650,6 +637,22 @@
     "control_letter_escape": {
       "type": "PATTERN",
       "value": "\\\\c[a-zA-Z]"
+    },
+    "identity_escape": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "\\"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[^kdDsSpPwWbfnrtv0-9]"
+          }
+        ]
+      }
     },
     "group_name": {
       "type": "PATTERN",

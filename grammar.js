@@ -117,10 +117,10 @@ module.exports = grammar({
 
     decimal_escape: $ => /\\[1-9][0-9]+/,
 
-    character_class_escape: $ => seq('\\', choice(
-      /[dDsSwW]/,
-      seq(/[pP]/, '{', $.unicode_property_value_expression, '}')
-    )),
+    character_class_escape: $ => choice(
+      /\\[dDsSwW]/,
+      seq(/\\[pP]/, '{', $.unicode_property_value_expression, '}')
+    ),
 
     unicode_property_value_expression: $ => seq(
       optional(seq(alias($.unicode_property, $.unicode_property_name), '=')),
@@ -135,8 +135,6 @@ module.exports = grammar({
       $.identity_escape
     ),
 
-    identity_escape: $ => new RegExp(`\\\\[${SYNTAX_CHARS_ESCAPED}]`),
-
     // TODO: We should technically not accept \0 unless the
     // lookahead is not also a digit.
     // I think this has little bearing on the highlighting of
@@ -144,6 +142,8 @@ module.exports = grammar({
     control_escape: $ => /\\[bfnrtv0]/,
 
     control_letter_escape: $ => /\\c[a-zA-Z]/,
+
+    identity_escape: $ => token(seq('\\', /[^kdDsSpPwWbfnrtv0-9]/)),
 
     // TODO: This is an approximation of RegExpIdentifierName in the
     // formal grammar, which allows for Unicode names through

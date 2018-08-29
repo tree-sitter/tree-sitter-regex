@@ -235,23 +235,42 @@ character classes - identity escapes
 ))
 
 ===================
+identity escapes
+===================
+\a\b\c\d\\\{\(\[\]\)\}
+---
+
+(pattern (term
+  (identity_escape)
+  (boundary_assertion)
+  (identity_escape)
+  (character_class_escape)
+  (identity_escape)
+  (identity_escape)
+  (identity_escape)
+  (identity_escape)
+  (identity_escape)
+  (identity_escape)
+  (identity_escape)))
+
+===================
 non-capturing groups
 ===================
 Jack(?:Sprat)
 ---
 
 (pattern (term
+  (pattern_character)
+  (pattern_character)
+  (pattern_character)
+  (pattern_character)
+  (non_capturing_group (pattern (term
     (pattern_character)
     (pattern_character)
     (pattern_character)
     (pattern_character)
-    (non_capturing_group (pattern (term
-      (pattern_character)
-      (pattern_character)
-      (pattern_character)
-      (pattern_character)
-      (pattern_character)
-    )))
+    (pattern_character)
+  )))
 ))
 
 ===================
