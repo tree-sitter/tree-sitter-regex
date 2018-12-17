@@ -1,0 +1,35 @@
+@schema "tree-sitter-highlight-schema";
+
+"(", ")",
+"(?", "(?:", "(?<",
+">",
+"[", "]",
+"{", "}" {
+  scope: 'punctuation.bracket';
+}
+
+group_name {
+  scope: 'property';
+}
+
+identity_escape,
+control_letter_escape,
+control_escape,
+class_escape
+start_assertion,
+end_assertion,
+boundary_assertion,
+non_boundary_assertion {
+  scope: 'escape';
+}
+
+"escape_sequence" {
+  scope: 'escape';
+}
+
+"*", "+",
+"|",
+"=", "<=", "!", "<!"
+{
+  scope: 'operator';
+}

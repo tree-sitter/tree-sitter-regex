@@ -1,0 +1,1414 @@
+{
+  "states": [
+    {
+      "id": 0,
+      "property_set_id": 0,
+      "transitions": [
+        {
+          "type": "!",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "(",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "(?",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "(?:",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "(?<",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": ")",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "*",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "+",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "<!",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "<=",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "=",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": ">",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "[",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "]",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "boundary_assertion",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "class_escape",
+          "named": true,
+          "state_id": 5
+        },
+        {
+          "type": "control_escape",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "control_letter_escape",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "end_assertion",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "escape_sequence",
+          "named": false,
+          "state_id": 3
+        },
+        {
+          "type": "group_name",
+          "named": true,
+          "state_id": 4
+        },
+        {
+          "type": "identity_escape",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "non_boundary_assertion",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "{",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "|",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "}",
+          "named": false,
+          "state_id": 2
+        }
+      ],
+      "default_next_state_id": 0
+    },
+    {
+      "id": 1,
+      "property_set_id": 1,
+      "transitions": [
+        {
+          "type": "!",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "(",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "(?",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "(?:",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "(?<",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": ")",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "*",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "+",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "<!",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "<=",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "=",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": ">",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "[",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "]",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "boundary_assertion",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "class_escape",
+          "named": true,
+          "state_id": 5
+        },
+        {
+          "type": "control_escape",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "control_letter_escape",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "end_assertion",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "escape_sequence",
+          "named": false,
+          "state_id": 3
+        },
+        {
+          "type": "group_name",
+          "named": true,
+          "state_id": 4
+        },
+        {
+          "type": "identity_escape",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "non_boundary_assertion",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "{",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "|",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "}",
+          "named": false,
+          "state_id": 2
+        }
+      ],
+      "default_next_state_id": 0
+    },
+    {
+      "id": 2,
+      "property_set_id": 2,
+      "transitions": [
+        {
+          "type": "!",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "(",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "(?",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "(?:",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "(?<",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": ")",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "*",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "+",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "<!",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "<=",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "=",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": ">",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "[",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "]",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "boundary_assertion",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "class_escape",
+          "named": true,
+          "state_id": 5
+        },
+        {
+          "type": "control_escape",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "control_letter_escape",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "end_assertion",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "escape_sequence",
+          "named": false,
+          "state_id": 3
+        },
+        {
+          "type": "group_name",
+          "named": true,
+          "state_id": 4
+        },
+        {
+          "type": "identity_escape",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "non_boundary_assertion",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "{",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "|",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "}",
+          "named": false,
+          "state_id": 2
+        }
+      ],
+      "default_next_state_id": 0
+    },
+    {
+      "id": 3,
+      "property_set_id": 3,
+      "transitions": [
+        {
+          "type": "!",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "(",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "(?",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "(?:",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "(?<",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": ")",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "*",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "+",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "<!",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "<=",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "=",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": ">",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "[",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "]",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "boundary_assertion",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "class_escape",
+          "named": true,
+          "state_id": 5
+        },
+        {
+          "type": "control_escape",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "control_letter_escape",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "end_assertion",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "escape_sequence",
+          "named": false,
+          "state_id": 3
+        },
+        {
+          "type": "group_name",
+          "named": true,
+          "state_id": 4
+        },
+        {
+          "type": "identity_escape",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "non_boundary_assertion",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "{",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "|",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "}",
+          "named": false,
+          "state_id": 2
+        }
+      ],
+      "default_next_state_id": 0
+    },
+    {
+      "id": 4,
+      "property_set_id": 4,
+      "transitions": [
+        {
+          "type": "!",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "(",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "(?",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "(?:",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "(?<",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": ")",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "*",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "+",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "<!",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "<=",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "=",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": ">",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "[",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "]",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "boundary_assertion",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "class_escape",
+          "named": true,
+          "state_id": 5
+        },
+        {
+          "type": "control_escape",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "control_letter_escape",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "end_assertion",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "escape_sequence",
+          "named": false,
+          "state_id": 3
+        },
+        {
+          "type": "group_name",
+          "named": true,
+          "state_id": 4
+        },
+        {
+          "type": "identity_escape",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "non_boundary_assertion",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "{",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "|",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "}",
+          "named": false,
+          "state_id": 2
+        }
+      ],
+      "default_next_state_id": 0
+    },
+    {
+      "id": 5,
+      "property_set_id": 0,
+      "transitions": [
+        {
+          "type": "!",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "(",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "(?",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "(?:",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "(?<",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": ")",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "*",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "+",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "<!",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "<=",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "=",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": ">",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "[",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "]",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "boundary_assertion",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "class_escape",
+          "named": true,
+          "state_id": 5
+        },
+        {
+          "type": "control_escape",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "control_letter_escape",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "end_assertion",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "escape_sequence",
+          "named": false,
+          "state_id": 8
+        },
+        {
+          "type": "group_name",
+          "named": true,
+          "state_id": 9
+        },
+        {
+          "type": "identity_escape",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "non_boundary_assertion",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "start_assertion",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "{",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "|",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "}",
+          "named": false,
+          "state_id": 7
+        }
+      ],
+      "default_next_state_id": 5
+    },
+    {
+      "id": 6,
+      "property_set_id": 1,
+      "transitions": [
+        {
+          "type": "!",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "(",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "(?",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "(?:",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "(?<",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": ")",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "*",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "+",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "<!",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "<=",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "=",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": ">",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "[",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "]",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "boundary_assertion",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "class_escape",
+          "named": true,
+          "state_id": 5
+        },
+        {
+          "type": "control_escape",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "control_letter_escape",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "end_assertion",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "escape_sequence",
+          "named": false,
+          "state_id": 8
+        },
+        {
+          "type": "group_name",
+          "named": true,
+          "state_id": 9
+        },
+        {
+          "type": "identity_escape",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "non_boundary_assertion",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "start_assertion",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "{",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "|",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "}",
+          "named": false,
+          "state_id": 7
+        }
+      ],
+      "default_next_state_id": 5
+    },
+    {
+      "id": 7,
+      "property_set_id": 2,
+      "transitions": [
+        {
+          "type": "!",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "(",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "(?",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "(?:",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "(?<",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": ")",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "*",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "+",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "<!",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "<=",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "=",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": ">",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "[",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "]",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "boundary_assertion",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "class_escape",
+          "named": true,
+          "state_id": 5
+        },
+        {
+          "type": "control_escape",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "control_letter_escape",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "end_assertion",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "escape_sequence",
+          "named": false,
+          "state_id": 8
+        },
+        {
+          "type": "group_name",
+          "named": true,
+          "state_id": 9
+        },
+        {
+          "type": "identity_escape",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "non_boundary_assertion",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "start_assertion",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "{",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "|",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "}",
+          "named": false,
+          "state_id": 7
+        }
+      ],
+      "default_next_state_id": 5
+    },
+    {
+      "id": 8,
+      "property_set_id": 3,
+      "transitions": [
+        {
+          "type": "!",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "(",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "(?",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "(?:",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "(?<",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": ")",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "*",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "+",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "<!",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "<=",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "=",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": ">",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "[",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "]",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "boundary_assertion",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "class_escape",
+          "named": true,
+          "state_id": 5
+        },
+        {
+          "type": "control_escape",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "control_letter_escape",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "end_assertion",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "escape_sequence",
+          "named": false,
+          "state_id": 8
+        },
+        {
+          "type": "group_name",
+          "named": true,
+          "state_id": 9
+        },
+        {
+          "type": "identity_escape",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "non_boundary_assertion",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "start_assertion",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "{",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "|",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "}",
+          "named": false,
+          "state_id": 7
+        }
+      ],
+      "default_next_state_id": 5
+    },
+    {
+      "id": 9,
+      "property_set_id": 4,
+      "transitions": [
+        {
+          "type": "!",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "(",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "(?",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "(?:",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "(?<",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": ")",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "*",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "+",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "<!",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "<=",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "=",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": ">",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "[",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "]",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "boundary_assertion",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "class_escape",
+          "named": true,
+          "state_id": 5
+        },
+        {
+          "type": "control_escape",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "control_letter_escape",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "end_assertion",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "escape_sequence",
+          "named": false,
+          "state_id": 8
+        },
+        {
+          "type": "group_name",
+          "named": true,
+          "state_id": 9
+        },
+        {
+          "type": "identity_escape",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "non_boundary_assertion",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "start_assertion",
+          "named": true,
+          "state_id": 8
+        },
+        {
+          "type": "{",
+          "named": false,
+          "state_id": 7
+        },
+        {
+          "type": "|",
+          "named": false,
+          "state_id": 6
+        },
+        {
+          "type": "}",
+          "named": false,
+          "state_id": 7
+        }
+      ],
+      "default_next_state_id": 5
+    }
+  ],
+  "property_sets": [
+    {},
+    {
+      "scope": "operator"
+    },
+    {
+      "scope": "punctuation.bracket"
+    },
+    {
+      "scope": "escape"
+    },
+    {
+      "scope": "property"
+    }
+  ]
+}
