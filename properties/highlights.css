@@ -1,10 +1,13 @@
-@schema "tree-sitter-highlight-schema";
-
-"(", ")",
-"(?", "(?:", "(?<",
-">",
-"[", "]",
-"{", "}" {
+[token="("],
+[token=")"],
+[token="(?"],
+[token="(?:"],
+[token="(?<"],
+[token=">"],
+[token="["],
+[token="]"],
+[token="{"],
+[token="}"] {
   scope: 'punctuation.bracket';
 }
 
@@ -23,13 +26,17 @@ non_boundary_assertion {
   scope: 'escape';
 }
 
-"escape_sequence" {
+[token="escape_sequence"] {
   scope: 'escape';
 }
 
-"*", "+",
-"|",
-"=", "<=", "!", "<!"
+[token="*"],
+[token="+"],
+[token="|"],
+[token="="],
+[token="<="],
+[token="!"],
+[token="<!"]
 {
   scope: 'operator';
 }

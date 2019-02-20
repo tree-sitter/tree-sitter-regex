@@ -82,7 +82,7 @@
         {
           "type": "class_escape",
           "named": true,
-          "state_id": 5
+          "state_id": 4
         },
         {
           "type": "control_escape",
@@ -107,7 +107,7 @@
         {
           "type": "group_name",
           "named": true,
-          "state_id": 4
+          "state_id": 5
         },
         {
           "type": "identity_escape",
@@ -219,7 +219,7 @@
         {
           "type": "class_escape",
           "named": true,
-          "state_id": 5
+          "state_id": 4
         },
         {
           "type": "control_escape",
@@ -244,7 +244,7 @@
         {
           "type": "group_name",
           "named": true,
-          "state_id": 4
+          "state_id": 5
         },
         {
           "type": "identity_escape",
@@ -356,7 +356,7 @@
         {
           "type": "class_escape",
           "named": true,
-          "state_id": 5
+          "state_id": 4
         },
         {
           "type": "control_escape",
@@ -381,7 +381,7 @@
         {
           "type": "group_name",
           "named": true,
-          "state_id": 4
+          "state_id": 5
         },
         {
           "type": "identity_escape",
@@ -493,7 +493,7 @@
         {
           "type": "class_escape",
           "named": true,
-          "state_id": 5
+          "state_id": 4
         },
         {
           "type": "control_escape",
@@ -518,7 +518,7 @@
         {
           "type": "group_name",
           "named": true,
-          "state_id": 4
+          "state_id": 5
         },
         {
           "type": "identity_escape",
@@ -550,143 +550,6 @@
     },
     {
       "id": 4,
-      "property_set_id": 4,
-      "transitions": [
-        {
-          "type": "!",
-          "named": false,
-          "state_id": 1
-        },
-        {
-          "type": "(",
-          "named": false,
-          "state_id": 2
-        },
-        {
-          "type": "(?",
-          "named": false,
-          "state_id": 2
-        },
-        {
-          "type": "(?:",
-          "named": false,
-          "state_id": 2
-        },
-        {
-          "type": "(?<",
-          "named": false,
-          "state_id": 2
-        },
-        {
-          "type": ")",
-          "named": false,
-          "state_id": 2
-        },
-        {
-          "type": "*",
-          "named": false,
-          "state_id": 1
-        },
-        {
-          "type": "+",
-          "named": false,
-          "state_id": 1
-        },
-        {
-          "type": "<!",
-          "named": false,
-          "state_id": 1
-        },
-        {
-          "type": "<=",
-          "named": false,
-          "state_id": 1
-        },
-        {
-          "type": "=",
-          "named": false,
-          "state_id": 1
-        },
-        {
-          "type": ">",
-          "named": false,
-          "state_id": 2
-        },
-        {
-          "type": "[",
-          "named": false,
-          "state_id": 2
-        },
-        {
-          "type": "]",
-          "named": false,
-          "state_id": 2
-        },
-        {
-          "type": "boundary_assertion",
-          "named": true,
-          "state_id": 3
-        },
-        {
-          "type": "class_escape",
-          "named": true,
-          "state_id": 5
-        },
-        {
-          "type": "control_escape",
-          "named": true,
-          "state_id": 3
-        },
-        {
-          "type": "control_letter_escape",
-          "named": true,
-          "state_id": 3
-        },
-        {
-          "type": "end_assertion",
-          "named": true,
-          "state_id": 3
-        },
-        {
-          "type": "escape_sequence",
-          "named": false,
-          "state_id": 3
-        },
-        {
-          "type": "group_name",
-          "named": true,
-          "state_id": 4
-        },
-        {
-          "type": "identity_escape",
-          "named": true,
-          "state_id": 3
-        },
-        {
-          "type": "non_boundary_assertion",
-          "named": true,
-          "state_id": 3
-        },
-        {
-          "type": "{",
-          "named": false,
-          "state_id": 2
-        },
-        {
-          "type": "|",
-          "named": false,
-          "state_id": 1
-        },
-        {
-          "type": "}",
-          "named": false,
-          "state_id": 2
-        }
-      ],
-      "default_next_state_id": 0
-    },
-    {
-      "id": 5,
       "property_set_id": 0,
       "transitions": [
         {
@@ -767,7 +630,7 @@
         {
           "type": "class_escape",
           "named": true,
-          "state_id": 5
+          "state_id": 4
         },
         {
           "type": "control_escape",
@@ -825,7 +688,144 @@
           "state_id": 7
         }
       ],
-      "default_next_state_id": 5
+      "default_next_state_id": 16
+    },
+    {
+      "id": 5,
+      "property_set_id": 4,
+      "transitions": [
+        {
+          "type": "!",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "(",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "(?",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "(?:",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "(?<",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": ")",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "*",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "+",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "<!",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "<=",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "=",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": ">",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "[",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "]",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "boundary_assertion",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "class_escape",
+          "named": true,
+          "state_id": 4
+        },
+        {
+          "type": "control_escape",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "control_letter_escape",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "end_assertion",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "escape_sequence",
+          "named": false,
+          "state_id": 3
+        },
+        {
+          "type": "group_name",
+          "named": true,
+          "state_id": 5
+        },
+        {
+          "type": "identity_escape",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "non_boundary_assertion",
+          "named": true,
+          "state_id": 3
+        },
+        {
+          "type": "{",
+          "named": false,
+          "state_id": 2
+        },
+        {
+          "type": "|",
+          "named": false,
+          "state_id": 1
+        },
+        {
+          "type": "}",
+          "named": false,
+          "state_id": 2
+        }
+      ],
+      "default_next_state_id": 0
     },
     {
       "id": 6,
@@ -909,7 +909,7 @@
         {
           "type": "class_escape",
           "named": true,
-          "state_id": 5
+          "state_id": 4
         },
         {
           "type": "control_escape",
@@ -967,7 +967,7 @@
           "state_id": 7
         }
       ],
-      "default_next_state_id": 5
+      "default_next_state_id": 16
     },
     {
       "id": 7,
@@ -1051,7 +1051,7 @@
         {
           "type": "class_escape",
           "named": true,
-          "state_id": 5
+          "state_id": 4
         },
         {
           "type": "control_escape",
@@ -1109,7 +1109,7 @@
           "state_id": 7
         }
       ],
-      "default_next_state_id": 5
+      "default_next_state_id": 16
     },
     {
       "id": 8,
@@ -1193,7 +1193,7 @@
         {
           "type": "class_escape",
           "named": true,
-          "state_id": 5
+          "state_id": 4
         },
         {
           "type": "control_escape",
@@ -1251,7 +1251,7 @@
           "state_id": 7
         }
       ],
-      "default_next_state_id": 5
+      "default_next_state_id": 16
     },
     {
       "id": 9,
@@ -1335,7 +1335,7 @@
         {
           "type": "class_escape",
           "named": true,
-          "state_id": 5
+          "state_id": 4
         },
         {
           "type": "control_escape",
@@ -1393,7 +1393,7 @@
           "state_id": 7
         }
       ],
-      "default_next_state_id": 5
+      "default_next_state_id": 16
     }
   ],
   "property_sets": [
