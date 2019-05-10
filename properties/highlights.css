@@ -8,11 +8,11 @@
 [token="]"],
 [token="{"],
 [token="}"] {
-  scope: 'punctuation.bracket';
+  highlight: 'punctuation.bracket';
 }
 
 group_name {
-  scope: 'property';
+  highlight: 'property';
 }
 
 identity_escape,
@@ -23,11 +23,11 @@ start_assertion,
 end_assertion,
 boundary_assertion,
 non_boundary_assertion {
-  scope: 'escape';
+  highlight: 'escape';
 }
 
 [token="escape_sequence"] {
-  scope: 'escape';
+  highlight: 'escape';
 }
 
 [token="*"],
@@ -38,5 +38,5 @@ non_boundary_assertion {
 [token="!"],
 [token="<!"]
 {
-  scope: 'operator';
+  highlight: 'operator';
 }
