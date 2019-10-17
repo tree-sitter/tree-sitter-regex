@@ -4,8 +4,8 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
         {
           "type": "pattern",
@@ -19,8 +19,8 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
         {
           "type": "group_name",
@@ -69,7 +69,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
@@ -116,7 +116,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "decimal_digits",
@@ -149,8 +149,8 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
         {
           "type": "pattern",
@@ -165,7 +165,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "group_name",
@@ -183,8 +183,8 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
         {
           "type": "pattern",
@@ -198,7 +198,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
@@ -213,7 +213,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
@@ -228,8 +228,8 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
         {
           "type": "disjunction",
@@ -253,7 +253,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "anonymous_capturing_group",
@@ -348,7 +348,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "unicode_property_name",
@@ -366,7 +366,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
@@ -377,87 +377,15 @@
     }
   },
   {
-    "type": "|",
-    "named": false
-  },
-  {
-    "type": "any_character",
-    "named": true
-  },
-  {
-    "type": "^",
-    "named": false
-  },
-  {
-    "type": "end_assertion",
-    "named": true
-  },
-  {
-    "type": "boundary_assertion",
-    "named": true
-  },
-  {
-    "type": "non_boundary_assertion",
-    "named": true
-  },
-  {
-    "type": "(?",
-    "named": false
-  },
-  {
-    "type": "=",
-    "named": false
-  },
-  {
     "type": "!",
     "named": false
-  },
-  {
-    "type": "<=",
-    "named": false
-  },
-  {
-    "type": "<!",
-    "named": false
-  },
-  {
-    "type": ")",
-    "named": false
-  },
-  {
-    "type": "pattern_character",
-    "named": true
-  },
-  {
-    "type": "[",
-    "named": false
-  },
-  {
-    "type": "]",
-    "named": false
-  },
-  {
-    "type": "-",
-    "named": false
-  },
-  {
-    "type": "\\-",
-    "named": false
-  },
-  {
-    "type": "class_character",
-    "named": true
   },
   {
     "type": "(",
     "named": false
   },
   {
-    "type": "(?<",
-    "named": false
-  },
-  {
-    "type": ">",
+    "type": "(?",
     "named": false
   },
   {
@@ -465,11 +393,15 @@
     "named": false
   },
   {
-    "type": "*",
+    "type": "(?<",
     "named": false
   },
   {
-    "type": "?",
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": "*",
     "named": false
   },
   {
@@ -477,15 +409,35 @@
     "named": false
   },
   {
-    "type": "{",
-    "named": false
-  },
-  {
     "type": ",",
     "named": false
   },
   {
-    "type": "}",
+    "type": "-",
+    "named": false
+  },
+  {
+    "type": "<!",
+    "named": false
+  },
+  {
+    "type": "<=",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": "?",
+    "named": false
+  },
+  {
+    "type": "[",
     "named": false
   },
   {
@@ -493,11 +445,23 @@
     "named": false
   },
   {
-    "type": "decimal_escape",
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "^",
+    "named": false
+  },
+  {
+    "type": "any_character",
     "named": true
   },
   {
-    "type": "unicode_property",
+    "type": "boundary_assertion",
+    "named": true
+  },
+  {
+    "type": "class_character",
     "named": true
   },
   {
@@ -509,7 +473,15 @@
     "named": true
   },
   {
-    "type": "identity_escape",
+    "type": "decimal_digits",
+    "named": true
+  },
+  {
+    "type": "decimal_escape",
+    "named": true
+  },
+  {
+    "type": "end_assertion",
     "named": true
   },
   {
@@ -517,7 +489,39 @@
     "named": true
   },
   {
-    "type": "decimal_digits",
+    "type": "identity_escape",
     "named": true
+  },
+  {
+    "type": "lazy",
+    "named": true
+  },
+  {
+    "type": "non_boundary_assertion",
+    "named": true
+  },
+  {
+    "type": "pattern_character",
+    "named": true
+  },
+  {
+    "type": "unicode_property_name",
+    "named": true
+  },
+  {
+    "type": "unicode_property_value",
+    "named": true
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "|",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
   }
 ]
