@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-regex",
-  "version": "0.15.0",
+  "version": "0.15.1",
   "description": "regex grammar for tree-sitter",
   "main": "index.js",
   "keywords": [
