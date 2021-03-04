@@ -1,3 +1,4 @@
-grammar_test
 build
 script
+target
+Cargo.lock

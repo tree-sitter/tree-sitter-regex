@@ -5,15 +5,16 @@
 #pragma GCC diagnostic ignored "-Wmissing-field-initializers"
 #endif
 
-#define LANGUAGE_VERSION 11
+#define LANGUAGE_VERSION 13
 #define STATE_COUNT 75
 #define LARGE_STATE_COUNT 9
 #define SYMBOL_COUNT 59
-#define ALIAS_COUNT 3
+#define ALIAS_COUNT 2
 #define TOKEN_COUNT 39
 #define EXTERNAL_TOKEN_COUNT 0
 #define FIELD_COUNT 0
 #define MAX_ALIAS_SEQUENCE_LENGTH 6
+#define PRODUCTION_ID_COUNT 8
 
 enum {
   anon_sym_PIPE = 1,
@@ -76,7 +77,6 @@ enum {
   aux_sym_character_class_repeat1 = 58,
   alias_sym_lazy = 59,
   alias_sym_unicode_property_name = 60,
-  alias_sym_unicode_property_value = 61,
 };
 
 static const char *ts_symbol_names[] = {
@@ -87,7 +87,7 @@ static const char *ts_symbol_names[] = {
   [sym_end_assertion] = "end_assertion",
   [sym_boundary_assertion] = "boundary_assertion",
   [sym_non_boundary_assertion] = "non_boundary_assertion",
-  [anon_sym_LPAREN_QMARK] = "(?",
+  [anon_sym_LPAREN_QMARK] = "(\?",
   [anon_sym_EQ] = "=",
   [anon_sym_BANG] = "!",
   [anon_sym_LT_EQ] = "<=",
@@ -100,11 +100,11 @@ static const char *ts_symbol_names[] = {
   [anon_sym_BSLASH_DASH] = "identity_escape",
   [sym_class_character] = "class_character",
   [anon_sym_LPAREN] = "(",
-  [anon_sym_LPAREN_QMARK_LT] = "(?<",
+  [anon_sym_LPAREN_QMARK_LT] = "(\?<",
   [anon_sym_GT] = ">",
-  [anon_sym_LPAREN_QMARK_COLON] = "(?:",
+  [anon_sym_LPAREN_QMARK_COLON] = "(\?:",
   [anon_sym_STAR] = "*",
-  [anon_sym_QMARK] = "?",
+  [anon_sym_QMARK] = "\?",
   [anon_sym_PLUS] = "+",
   [anon_sym_LBRACE] = "{",
   [anon_sym_COMMA] = ",",
@@ -113,7 +113,7 @@ static const char *ts_symbol_names[] = {
   [sym_decimal_escape] = "decimal_escape",
   [aux_sym_character_class_escape_token1] = "character_class_escape_token1",
   [aux_sym_character_class_escape_token2] = "character_class_escape_token2",
-  [sym_unicode_property] = "unicode_property",
+  [sym_unicode_property] = "unicode_property_value",
   [sym_control_escape] = "control_escape",
   [sym_control_letter_escape] = "control_letter_escape",
   [sym_identity_escape] = "identity_escape",
@@ -141,7 +141,6 @@ static const char *ts_symbol_names[] = {
   [aux_sym_character_class_repeat1] = "character_class_repeat1",
   [alias_sym_lazy] = "lazy",
   [alias_sym_unicode_property_name] = "unicode_property_name",
-  [alias_sym_unicode_property_value] = "unicode_property_value",
 };
 
 static TSSymbol ts_symbol_map[] = {
@@ -206,7 +205,6 @@ static TSSymbol ts_symbol_map[] = {
   [aux_sym_character_class_repeat1] = aux_sym_character_class_repeat1,
   [alias_sym_lazy] = alias_sym_lazy,
   [alias_sym_unicode_property_name] = alias_sym_unicode_property_name,
-  [alias_sym_unicode_property_value] = alias_sym_unicode_property_value,
 };
 
 static const TSSymbolMetadata ts_symbol_metadata[] = {
@@ -454,13 +452,9 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = true,
   },
-  [alias_sym_unicode_property_value] = {
-    .visible = true,
-    .named = true,
-  },
 };
 
-static TSSymbol ts_alias_sequences[9][MAX_ALIAS_SEQUENCE_LENGTH] = {
+static TSSymbol ts_alias_sequences[PRODUCTION_ID_COUNT][MAX_ALIAS_SEQUENCE_LENGTH] = {
   [0] = {0},
   [1] = {
     [0] = sym_class_character,
@@ -469,25 +463,25 @@ static TSSymbol ts_alias_sequences[9][MAX_ALIAS_SEQUENCE_LENGTH] = {
     [1] = alias_sym_lazy,
   },
   [3] = {
-    [0] = alias_sym_unicode_property_value,
-  },
-  [4] = {
     [0] = sym_class_character,
     [2] = sym_class_character,
   },
-  [5] = {
+  [4] = {
     [2] = sym_class_character,
   },
-  [6] = {
+  [5] = {
     [3] = alias_sym_lazy,
   },
-  [7] = {
+  [6] = {
     [0] = alias_sym_unicode_property_name,
-    [2] = alias_sym_unicode_property_value,
   },
-  [8] = {
+  [7] = {
     [5] = alias_sym_lazy,
   },
+};
+
+static uint16_t ts_non_terminal_alias_map[] = {
+  0,
 };
 
 static bool ts_lex(TSLexer *lexer, TSStateId state) {
@@ -2304,8 +2298,8 @@ static TSParseActionEntry ts_parse_actions[] = {
   [146] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_count_quantifier, 5),
   [148] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_count_quantifier, 5),
   [150] = {.entry = {.count = 1, .reusable = true}}, SHIFT(26),
-  [152] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_count_quantifier, 6, .production_id = 8),
-  [154] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_count_quantifier, 6, .production_id = 8),
+  [152] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_count_quantifier, 6, .production_id = 7),
+  [154] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_count_quantifier, 6, .production_id = 7),
   [156] = {.entry = {.count = 1, .reusable = false}}, REDUCE(aux_sym_term_repeat1, 2),
   [158] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_one_or_more, 2, .production_id = 2),
   [160] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_one_or_more, 2, .production_id = 2),
@@ -2313,8 +2307,8 @@ static TSParseActionEntry ts_parse_actions[] = {
   [164] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_optional, 2, .production_id = 2),
   [166] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_zero_or_more, 2, .production_id = 2),
   [168] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_zero_or_more, 2, .production_id = 2),
-  [170] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_count_quantifier, 4, .production_id = 6),
-  [172] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_count_quantifier, 4, .production_id = 6),
+  [170] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_count_quantifier, 4, .production_id = 5),
+  [172] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_count_quantifier, 4, .production_id = 5),
   [174] = {.entry = {.count = 1, .reusable = false}}, SHIFT(35),
   [176] = {.entry = {.count = 1, .reusable = false}}, SHIFT(20),
   [178] = {.entry = {.count = 1, .reusable = false}}, SHIFT(42),
@@ -2332,8 +2326,8 @@ static TSParseActionEntry ts_parse_actions[] = {
   [207] = {.entry = {.count = 1, .reusable = false}}, SHIFT(14),
   [209] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_class_range, 3),
   [211] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_class_range, 3),
-  [213] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_class_range, 3, .production_id = 5),
-  [215] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_class_range, 3, .production_id = 5),
+  [213] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_class_range, 3, .production_id = 4),
+  [215] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_class_range, 3, .production_id = 4),
   [217] = {.entry = {.count = 1, .reusable = false}}, REDUCE(aux_sym_character_class_repeat1, 1),
   [219] = {.entry = {.count = 1, .reusable = false}}, SHIFT(46),
   [221] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_character_class_repeat1, 1),
@@ -2342,8 +2336,8 @@ static TSParseActionEntry ts_parse_actions[] = {
   [227] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_character_class_repeat1, 1, .production_id = 1),
   [229] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_class_range, 3, .production_id = 1),
   [231] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_class_range, 3, .production_id = 1),
-  [233] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_class_range, 3, .production_id = 4),
-  [235] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_class_range, 3, .production_id = 4),
+  [233] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_class_range, 3, .production_id = 3),
+  [235] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_class_range, 3, .production_id = 3),
   [237] = {.entry = {.count = 1, .reusable = false}}, SHIFT(44),
   [239] = {.entry = {.count = 1, .reusable = false}}, SHIFT(43),
   [241] = {.entry = {.count = 1, .reusable = true}}, SHIFT(43),
@@ -2357,7 +2351,7 @@ static TSParseActionEntry ts_parse_actions[] = {
   [257] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_disjunction_repeat1, 2), SHIFT_REPEAT(6),
   [260] = {.entry = {.count = 1, .reusable = true}}, SHIFT(2),
   [262] = {.entry = {.count = 1, .reusable = true}}, SHIFT(58),
-  [264] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_unicode_property_value_expression, 1, .production_id = 3),
+  [264] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_unicode_property_value_expression, 1),
   [266] = {.entry = {.count = 1, .reusable = true}}, SHIFT(53),
   [268] = {.entry = {.count = 1, .reusable = true}}, SHIFT(65),
   [270] = {.entry = {.count = 1, .reusable = true}}, SHIFT(21),
@@ -2370,7 +2364,7 @@ static TSParseActionEntry ts_parse_actions[] = {
   [284] = {.entry = {.count = 1, .reusable = true}}, SHIFT(25),
   [286] = {.entry = {.count = 1, .reusable = true}}, SHIFT(64),
   [288] = {.entry = {.count = 1, .reusable = true}}, SHIFT(57),
-  [290] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_unicode_property_value_expression, 3, .production_id = 7),
+  [290] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_unicode_property_value_expression, 3, .production_id = 6),
   [292] = {.entry = {.count = 1, .reusable = true}}, SHIFT(55),
   [294] = {.entry = {.count = 1, .reusable = true}}, SHIFT(13),
   [296] = {.entry = {.count = 1, .reusable = true}}, SHIFT(3),
@@ -2393,20 +2387,23 @@ extern const TSLanguage *tree_sitter_regex(void) {
     .symbol_count = SYMBOL_COUNT,
     .alias_count = ALIAS_COUNT,
     .token_count = TOKEN_COUNT,
+    .external_token_count = EXTERNAL_TOKEN_COUNT,
+    .state_count = STATE_COUNT,
     .large_state_count = LARGE_STATE_COUNT,
-    .symbol_metadata = ts_symbol_metadata,
-    .parse_table = (const unsigned short *)ts_parse_table,
+    .production_id_count = PRODUCTION_ID_COUNT,
+    .field_count = FIELD_COUNT,
+    .max_alias_sequence_length = MAX_ALIAS_SEQUENCE_LENGTH,
+    .parse_table = (const uint16_t *)ts_parse_table,
     .small_parse_table = (const uint16_t *)ts_small_parse_table,
     .small_parse_table_map = (const uint32_t *)ts_small_parse_table_map,
     .parse_actions = ts_parse_actions,
-    .lex_modes = ts_lex_modes,
     .symbol_names = ts_symbol_names,
+    .symbol_metadata = ts_symbol_metadata,
     .public_symbol_map = ts_symbol_map,
+    .alias_map = ts_non_terminal_alias_map,
     .alias_sequences = (const TSSymbol *)ts_alias_sequences,
-    .field_count = FIELD_COUNT,
-    .max_alias_sequence_length = MAX_ALIAS_SEQUENCE_LENGTH,
+    .lex_modes = ts_lex_modes,
     .lex_fn = ts_lex,
-    .external_token_count = EXTERNAL_TOKEN_COUNT,
   };
   return &language;
 }

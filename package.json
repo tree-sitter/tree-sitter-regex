@@ -2,7 +2,7 @@
   "name": "tree-sitter-regex",
   "version": "0.16.0",
   "description": "regex grammar for tree-sitter",
-  "main": "index.js",
+  "main": "bindings/node",
   "keywords": [
     "parser",
     "regex"
@@ -10,10 +10,10 @@
   "author": "Ashi Krishnan <queerviolet@github.com>",
   "license": "MIT",
   "dependencies": {
-    "nan": "^2.14.0"
+    "nan": "^2.14.1"
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.16.7"
+    "tree-sitter-cli": "^0.19.1"
   },
   "scripts": {
     "test": "tree-sitter test"

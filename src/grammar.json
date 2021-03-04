@@ -670,6 +670,7 @@
     }
   ],
   "conflicts": [],
+  "precedences": [],
   "externals": [],
   "inline": [
     "_character_escape",
