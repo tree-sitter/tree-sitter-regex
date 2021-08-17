@@ -7,6 +7,10 @@
     "parser",
     "regex"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tree-sitter/tree-sitter-regex.git"
+  },
   "author": "Ashi Krishnan <queerviolet@github.com>",
   "license": "MIT",
   "dependencies": {
