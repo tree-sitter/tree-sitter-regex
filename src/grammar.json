@@ -262,7 +262,7 @@
     },
     "class_range": {
       "type": "PREC_RIGHT",
-      "value": 1,
+      "value": 0,
       "content": {
         "type": "SEQ",
         "members": [
@@ -669,7 +669,12 @@
       "value": "\n"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    [
+      "character_class",
+      "class_range"
+    ]
+  ],
   "precedences": [],
   "externals": [],
   "inline": [

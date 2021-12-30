@@ -212,6 +212,18 @@ character classes - '-' is an atom
 ))
 
 ===================
+character classes - 'a-' is atoms
+===================
+[a-]
+---
+(pattern (term
+  (character_class
+    (class_character)
+    (class_character)
+  )
+))
+
+===================
 character classes - /[---]/ is odd but valid
 ===================
 [---]
