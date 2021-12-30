@@ -21,6 +21,8 @@ module.exports = grammar({
     $._class_atom,
   ],
 
+  conflicts: $ => [[$.character_class, $.class_range]],
+
   rules: {
     pattern: $ => choice(
       $.disjunction,
@@ -83,7 +85,7 @@ module.exports = grammar({
       ']'
     ),
 
-    class_range: $ => prec.right(1,
+    class_range: $ => prec.right(
       seq($._class_atom, '-', $._class_atom)
     ),
 
