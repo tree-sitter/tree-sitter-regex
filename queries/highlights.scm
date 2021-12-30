@@ -34,3 +34,19 @@
   "!"
   "<!"
 ] @operator
+
+(count_quantifier
+  [
+    (decimal_digits) @number
+    "," @punctuation.delimiter
+  ])
+
+(character_class
+  [
+    "^" @operator
+    (class_range "-" @operator)
+  ])
+
+(class_character) @constant.character
+
+(pattern_character) @string
