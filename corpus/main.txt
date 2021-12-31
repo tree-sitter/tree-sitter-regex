@@ -61,6 +61,17 @@ h{1,2}?el{1,2}.{3}
 ))
 
 ===================
+open brace reads as a pattern character when not closed
+===================
+{a
+---
+
+(pattern (term
+  (pattern_character)
+  (pattern_character)
+))
+
+===================
 disjunctions
 ===================
 he..o|wo.ld

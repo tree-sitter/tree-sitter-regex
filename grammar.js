@@ -4,7 +4,7 @@ const quantifierRule = prefix => $ => seq(
 )
 
 const SYNTAX_CHARS = [
-  ...'^$\\.*+?()[]{}|'
+  ...'^$\\.*+?()[]|'
 ]
 
 const SYNTAX_CHARS_ESCAPED = SYNTAX_CHARS.map(
