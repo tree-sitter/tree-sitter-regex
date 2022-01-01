@@ -14,7 +14,7 @@ const SYNTAX_CHARS_ESCAPED = SYNTAX_CHARS.map(
 module.exports = grammar({
   name: 'regex',
 
-  extras: $ => ['\n'],
+  extras: $ => [/\r?\n/],
 
   inline: $ => [
     $._character_escape,
@@ -73,7 +73,7 @@ module.exports = grammar({
       ')'
     ),
 
-    pattern_character: $ => new RegExp(`[^${SYNTAX_CHARS_ESCAPED}\\n]`),
+    pattern_character: $ => new RegExp(`[^${SYNTAX_CHARS_ESCAPED}\\r?\\n]`),
 
     character_class: $ => seq(
       '[',
