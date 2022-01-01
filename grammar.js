@@ -25,11 +25,11 @@ module.exports = grammar({
 
   rules: {
     pattern: $ => choice(
-      $.disjunction,
+      $.alternation,
       $.term,
     ),
 
-    disjunction: $ => seq(
+    alternation: $ => seq(
       optional($.term),
       repeat1(seq('|', optional($.term)))
     ),
@@ -117,7 +117,7 @@ module.exports = grammar({
 
     backreference_escape: $ => seq('\\k', $.group_name),
 
-    decimal_escape: $ => /\\[1-9][0-9]+/,
+    decimal_escape: $ => /\\[1-9][0-9]*/,
 
     character_class_escape: $ => choice(
       /\\[dDsSwW]/,
