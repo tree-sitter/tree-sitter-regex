@@ -217,7 +217,7 @@
     },
     "pattern_character": {
       "type": "PATTERN",
-      "value": "[^\\^\\$\\\\\\.\\*\\+\\?\\(\\)\\[\\]\\|\\n]"
+      "value": "[^\\^\\$\\\\\\.\\*\\+\\?\\(\\)\\[\\]\\|\\r?\\n]"
     },
     "character_class": {
       "type": "SEQ",
@@ -665,8 +665,8 @@
   },
   "extras": [
     {
-      "type": "STRING",
-      "value": "\n"
+      "type": "PATTERN",
+      "value": "\\r?\\n"
     }
   ],
   "conflicts": [
