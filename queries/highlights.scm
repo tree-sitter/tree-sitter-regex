@@ -1,29 +1,52 @@
-"(" @punctuation.bracket
-")" @punctuation.bracket
-"(?" @punctuation.bracket
-"(?:" @punctuation.bracket
-"(?<" @punctuation.bracket
-">" @punctuation.bracket
-"[" @punctuation.bracket
-"]" @punctuation.bracket
-"{" @punctuation.bracket
-"}" @punctuation.bracket
+[
+  "("
+  ")"
+  "(?"
+  "(?:"
+  "(?<"
+  ">"
+  "["
+  "]"
+  "{"
+  "}"
+] @punctuation.bracket
 
 (group_name) @property
 
-(identity_escape) @escape
-(control_letter_escape) @escape
-(character_class_escape) @escape
-(control_escape) @escape
-(start_assertion) @escape
-(end_assertion) @escape
-(boundary_assertion) @escape
-(non_boundary_assertion) @escape
+[
+  (identity_escape)
+  (control_letter_escape)
+  (character_class_escape)
+  (control_escape)
+  (start_assertion)
+  (end_assertion)
+  (boundary_assertion)
+  (non_boundary_assertion)
+] @escape
 
-"*" @operator
-"+" @operator
-"|" @operator
-"=" @operator
-"<=" @operator
-"!" @operator
-"<!" @operator
+[
+  "*"
+  "+"
+  "?"
+  "|"
+  "="
+  "<="
+  "!"
+  "<!"
+] @operator
+
+(count_quantifier
+  [
+    (decimal_digits) @number
+    "," @punctuation.delimiter
+  ])
+
+(character_class
+  [
+    "^" @operator
+    (class_range "-" @operator)
+  ])
+
+(class_character) @constant.character
+
+(pattern_character) @string
