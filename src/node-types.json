@@ -1,5 +1,20 @@
 [
   {
+    "type": "alternation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "term",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "anonymous_capturing_group",
     "named": true,
     "fields": {},
@@ -130,21 +145,6 @@
     }
   },
   {
-    "type": "disjunction",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "term",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "lookahead_assertion",
     "named": true,
     "fields": {},
@@ -232,7 +232,7 @@
       "required": true,
       "types": [
         {
-          "type": "disjunction",
+          "type": "alternation",
           "named": true
         },
         {

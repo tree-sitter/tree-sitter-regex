@@ -6,7 +6,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "disjunction"
+          "name": "alternation"
         },
         {
           "type": "SYMBOL",
@@ -14,7 +14,7 @@
         }
       ]
     },
-    "disjunction": {
+    "alternation": {
       "type": "SEQ",
       "members": [
         {
@@ -537,7 +537,7 @@
     },
     "decimal_escape": {
       "type": "PATTERN",
-      "value": "\\\\[1-9][0-9]+"
+      "value": "\\\\[1-9][0-9]*"
     },
     "character_class_escape": {
       "type": "CHOICE",
