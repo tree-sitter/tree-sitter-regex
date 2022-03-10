@@ -197,6 +197,69 @@ Jack(?=Sprat)
           (pattern_character))))))
 
 ================================================================================
+negative lookahead
+================================================================================
+Jack(?!Sprat)
+--------------------------------------------------------------------------------
+
+(pattern
+  (term
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)
+    (lookahead_assertion
+      (pattern
+        (term
+          (pattern_character)
+          (pattern_character)
+          (pattern_character)
+          (pattern_character)
+          (pattern_character))))))
+
+================================================================================
+lookbehind
+================================================================================
+(?<=Jack)Sprat
+--------------------------------------------------------------------------------
+
+(pattern
+  (term
+    (lookbehind_assertion
+      (pattern
+        (term
+          (pattern_character)
+          (pattern_character)
+          (pattern_character)
+          (pattern_character))))))
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)
+
+================================================================================
+negative lookbehind
+================================================================================
+(?<!Jack)Sprat
+--------------------------------------------------------------------------------
+
+(pattern
+  (term
+    (lookbehind_assertion
+      (pattern
+        (term
+          (pattern_character)
+          (pattern_character)
+          (pattern_character)
+          (pattern_character))))))
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)
+
+================================================================================
 character classes
 ================================================================================
 [A-Za-z][^Xx]
