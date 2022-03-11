@@ -187,7 +187,7 @@ Jack(?=Sprat)
     (pattern_character)
     (pattern_character)
     (pattern_character)
-    (lookahead_assertion
+    (lookaround_assertion
       (pattern
         (term
           (pattern_character)
@@ -208,7 +208,7 @@ Jack(?!Sprat)
     (pattern_character)
     (pattern_character)
     (pattern_character)
-    (lookahead_assertion
+    (lookaround_assertion
       (pattern
         (term
           (pattern_character)
@@ -225,18 +225,18 @@ lookbehind
 
 (pattern
   (term
-    (lookbehind_assertion
+    (lookaround_assertion
       (pattern
         (term
           (pattern_character)
           (pattern_character)
           (pattern_character)
-          (pattern_character))))))
+          (pattern_character))))
     (pattern_character)
     (pattern_character)
     (pattern_character)
     (pattern_character)
-    (pattern_character)
+    (pattern_character)))
 
 ================================================================================
 negative lookbehind
@@ -246,18 +246,18 @@ negative lookbehind
 
 (pattern
   (term
-    (lookbehind_assertion
+    (lookaround_assertion
       (pattern
         (term
           (pattern_character)
           (pattern_character)
           (pattern_character)
-          (pattern_character))))))
+          (pattern_character))))
     (pattern_character)
     (pattern_character)
     (pattern_character)
     (pattern_character)
-    (pattern_character)
+    (pattern_character)))
 
 ================================================================================
 character classes
