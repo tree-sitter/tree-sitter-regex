@@ -30,9 +30,7 @@
   "?"
   "|"
   "="
-  "<="
   "!"
-  "<!"
 ] @operator
 
 (count_quantifier
