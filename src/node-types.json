@@ -145,7 +145,7 @@
     }
   },
   {
-    "type": "lookahead_assertion",
+    "type": "lookaround_assertion",
     "named": true,
     "fields": {},
     "children": {
@@ -304,7 +304,7 @@
           "named": true
         },
         {
-          "type": "lookahead_assertion",
+          "type": "lookaround_assertion",
           "named": true
         },
         {
@@ -414,14 +414,6 @@
   },
   {
     "type": "-",
-    "named": false
-  },
-  {
-    "type": "<!",
-    "named": false
-  },
-  {
-    "type": "<=",
     "named": false
   },
   {
