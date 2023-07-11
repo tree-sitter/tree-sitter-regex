@@ -187,7 +187,7 @@ Jack(?=Sprat)
     (pattern_character)
     (pattern_character)
     (pattern_character)
-    (lookahead_assertion
+    (lookaround_assertion
       (pattern
         (term
           (pattern_character)
@@ -195,6 +195,69 @@ Jack(?=Sprat)
           (pattern_character)
           (pattern_character)
           (pattern_character))))))
+
+================================================================================
+negative lookahead
+================================================================================
+Jack(?!Sprat)
+--------------------------------------------------------------------------------
+
+(pattern
+  (term
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)
+    (lookaround_assertion
+      (pattern
+        (term
+          (pattern_character)
+          (pattern_character)
+          (pattern_character)
+          (pattern_character)
+          (pattern_character))))))
+
+================================================================================
+lookbehind
+================================================================================
+(?<=Jack)Sprat
+--------------------------------------------------------------------------------
+
+(pattern
+  (term
+    (lookaround_assertion
+      (pattern
+        (term
+          (pattern_character)
+          (pattern_character)
+          (pattern_character)
+          (pattern_character))))
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)))
+
+================================================================================
+negative lookbehind
+================================================================================
+(?<!Jack)Sprat
+--------------------------------------------------------------------------------
+
+(pattern
+  (term
+    (lookaround_assertion
+      (pattern
+        (term
+          (pattern_character)
+          (pattern_character)
+          (pattern_character)
+          (pattern_character))))
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)))
 
 ================================================================================
 character classes

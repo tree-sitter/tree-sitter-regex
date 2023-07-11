@@ -81,7 +81,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "lookahead_assertion"
+                "name": "lookaround_assertion"
               },
               {
                 "type": "SYMBOL",
@@ -177,7 +177,20 @@
       "type": "STRING",
       "value": "\\B"
     },
-    "lookahead_assertion": {
+    "lookaround_assertion": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_lookahead_assertion"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_lookbehind_assertion"
+        }
+      ]
+    },
+    "_lookahead_assertion": {
       "type": "SEQ",
       "members": [
         {
@@ -194,14 +207,36 @@
             {
               "type": "STRING",
               "value": "!"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "pattern"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "_lookbehind_assertion": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "(?<"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "="
             },
             {
               "type": "STRING",
-              "value": "<="
-            },
-            {
-              "type": "STRING",
-              "value": "<!"
+              "value": "!"
             }
           ]
         },
