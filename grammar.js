@@ -1,20 +1,37 @@
+/**
+ * @file Regex grammar for tree-sitter
+ * @author Max Brunsfeld <maxbrunsfeld@gmail.com>
+ * @author Amaan Qureshi <amaanq12@gmail.com>
+ * @license MIT
+ */
+
+/// <reference types="tree-sitter-cli/dsl" />
+// @ts-check
+
+/**
+ *
+ * @param {RuleBuilder<string>} prefix - The rule builder
+ *
+ * @return {RuleBuilder<string>}
+ *
+ */
 const quantifierRule = prefix => $ => seq(
   prefix($),
-  optional(alias('?', $.lazy))
-)
+  optional(alias('?', $.lazy)),
+);
 
 const SYNTAX_CHARS = [
-  ...'^$\\.*+?()[]|'
-]
+  ...'^$\\.*+?()[]|',
+];
 
 const SYNTAX_CHARS_ESCAPED = SYNTAX_CHARS.map(
-  char => `\\${char}`
-).join('')
+  char => `\\${char}`,
+).join('');
 
 module.exports = grammar({
   name: 'regex',
 
-  extras: $ => [/\r?\n/],
+  extras: _ => [/\r?\n/],
 
   inline: $ => [
     $._character_escape,
@@ -31,7 +48,7 @@ module.exports = grammar({
 
     alternation: $ => seq(
       optional($.term),
-      repeat1(seq('|', optional($.term)))
+      repeat1(seq('|', optional($.term))),
     ),
 
     term: $ => repeat1(seq(
@@ -57,46 +74,46 @@ module.exports = grammar({
         $.one_or_more,
         $.optional,
         $.count_quantifier,
-      ))
+      )),
     )),
 
-    any_character: $ => '.',
+    any_character: _ => '.',
 
-    start_assertion: $ => '^',
-    end_assertion: $ => '$',
-    boundary_assertion: $ => '\\b',
-    non_boundary_assertion: $ => '\\B',
+    start_assertion: _ => '^',
+    end_assertion: _ => '$',
+    boundary_assertion: _ => '\\b',
+    non_boundary_assertion: _ => '\\B',
     lookaround_assertion: $ => choice(
       $._lookahead_assertion,
-      $._lookbehind_assertion
+      $._lookbehind_assertion,
     ),
     _lookahead_assertion: $ => seq(
       '(?',
       choice('=', '!'),
       $.pattern,
-      ')'
+      ')',
     ),
     _lookbehind_assertion: $ => seq(
       '(?<',
       choice('=', '!'),
       $.pattern,
-      ')'
+      ')',
     ),
 
-    pattern_character: $ => new RegExp(`[^${SYNTAX_CHARS_ESCAPED}\\r?\\n]`),
+    pattern_character: _ => new RegExp(`[^${SYNTAX_CHARS_ESCAPED}\\r?\\n]`),
 
     character_class: $ => seq(
       '[',
       optional('^'),
       repeat(choice(
         $.class_range,
-        $._class_atom
+        $._class_atom,
       )),
-      ']'
+      ']',
     ),
 
     class_range: $ => prec.right(
-      seq($._class_atom, '-', $._class_atom)
+      seq($._class_atom, '-', $._class_atom),
     ),
 
     _class_atom: $ => choice(
@@ -107,7 +124,7 @@ module.exports = grammar({
       $._character_escape,
     ),
 
-    class_character: $ => // NOT: \ ] or -
+    class_character: _ => // NOT: \ ] or -
       /[^\\\]\-]/,
 
     anonymous_capturing_group: $ => seq('(', $.pattern, ')'),
@@ -116,46 +133,46 @@ module.exports = grammar({
 
     non_capturing_group: $ => seq('(?:', $.pattern, ')'),
 
-    zero_or_more: quantifierRule($ => '*'),
-    one_or_more: quantifierRule($ => '+'),
-    optional: quantifierRule($ => '?'),
+    zero_or_more: quantifierRule(_ => '*'),
+    one_or_more: quantifierRule(_ => '+'),
+    optional: quantifierRule(_ => '?'),
     count_quantifier: quantifierRule($ => seq(
       '{',
       seq($.decimal_digits, optional(seq(',', $.decimal_digits))),
-      '}'
+      '}',
     )),
 
     backreference_escape: $ => seq('\\k', $.group_name),
 
-    decimal_escape: $ => /\\[1-9][0-9]*/,
+    decimal_escape: _ => /\\[1-9][0-9]*/,
 
     character_class_escape: $ => choice(
       /\\[dDsSwW]/,
-      seq(/\\[pP]/, '{', $.unicode_property_value_expression, '}')
+      seq(/\\[pP]/, '{', $.unicode_property_value_expression, '}'),
     ),
 
     unicode_property_value_expression: $ => seq(
       optional(seq(alias($.unicode_property, $.unicode_property_name), '=')),
-      alias($.unicode_property, $.unicode_property_value)
+      alias($.unicode_property, $.unicode_property_value),
     ),
 
-    unicode_property: $ => /[a-zA-Z_0-9]+/,
+    unicode_property: _ => /[a-zA-Z_0-9]+/,
 
     _character_escape: $ => choice(
       $.control_escape,
       $.control_letter_escape,
-      $.identity_escape
+      $.identity_escape,
     ),
 
     // TODO: We should technically not accept \0 unless the
     // lookahead is not also a digit.
     // I think this has little bearing on the highlighting of
     // correct regexes.
-    control_escape: $ => /\\[bfnrtv0]/,
+    control_escape: _ => /\\[bfnrtv0]/,
 
-    control_letter_escape: $ => /\\c[a-zA-Z]/,
+    control_letter_escape: _ => /\\c[a-zA-Z]/,
 
-    identity_escape: $ => token(seq('\\', /[^kdDsSpPwWbfnrtv0-9]/)),
+    identity_escape: _ => token(seq('\\', /[^kdDsSpPwWbfnrtv0-9]/)),
 
     // TODO: This is an approximation of RegExpIdentifierName in the
     // formal grammar, which allows for Unicode names through
@@ -183,8 +200,8 @@ module.exports = grammar({
     //   [+U]uNonSurrogate
     //   [~U]uHex4Digits
     //   [+U]u{CodePoint}
-    group_name: $ => /[A-Za-z0-9]+/,
+    group_name: _ => /[A-Za-z0-9]+/,
 
-    decimal_digits: $ => /\d+/
-  }
-})
+    decimal_digits: _ => /\d+/,
+  },
+});
