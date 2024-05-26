@@ -92,6 +92,10 @@
       "required": false,
       "types": [
         {
+          "type": "unicode_character_escape",
+          "named": true
+        },
+        {
           "type": "unicode_property_value_expression",
           "named": true
         }
@@ -369,6 +373,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "unicode_character_escape",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "unicode_property_value_expression",
