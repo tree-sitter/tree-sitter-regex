@@ -608,3 +608,64 @@ POSIX Character Class
       (posix_character_class
         (posix_class_name)))
     (one_or_more)))
+
+========================
+Unicode escape
+========================
+
+H\u0065e\u006C\u{006F}
+
+------------------------
+
+(pattern
+  (term
+    (pattern_character)
+    (character_class_escape
+      (unicode_character_escape))
+    (pattern_character)
+    (character_class_escape
+      (unicode_character_escape))
+    (character_class_escape
+      (unicode_character_escape))))
+
+==================================================
+\u without hex codes treated as identity escape
+==================================================
+
+\u0048ow r \u\?
+
+------------------------
+
+(pattern
+  (term
+    (character_class_escape
+      (unicode_character_escape))
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)
+    (pattern_character)
+    (identity_escape)
+    (identity_escape)))
+
+============================================================
+Unicode escaped characters as atoms in character classes
+============================================================
+
+[\u005D-\uFFFF][A-\uFFFF]
+
+------------------------------------------------------------
+
+(pattern
+  (term
+    (character_class
+      (class_range
+        (character_class_escape
+          (unicode_character_escape))
+        (character_class_escape
+          (unicode_character_escape))))
+    (character_class
+      (class_range
+        (class_character)
+        (character_class_escape
+          (unicode_character_escape))))))

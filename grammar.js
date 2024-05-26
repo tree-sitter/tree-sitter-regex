@@ -160,6 +160,14 @@ module.exports = grammar({
     character_class_escape: $ => choice(
       /\\[dDsSwW]/,
       seq(/\\[pP]/, '{', $.unicode_property_value_expression, '}'),
+      $.unicode_character_escape,
+    ),
+
+    unicode_character_escape: _ => choice(
+      /\\u[0-9a-fA-F]{4}/,
+      // NOTE: The following is a valid syntax only if the "u" flag is set.
+      // However, this is unlikely that "u" would be encountered
+      /\\u\{[0-9a-fA-F]{1,6}\}/,
     ),
 
     unicode_property_value_expression: $ => seq(

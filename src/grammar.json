@@ -636,6 +636,23 @@
               "value": "}"
             }
           ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unicode_character_escape"
+        }
+      ]
+    },
+    "unicode_character_escape": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "\\\\u[0-9a-fA-F]{4}"
+        },
+        {
+          "type": "PATTERN",
+          "value": "\\\\u\\{[0-9a-fA-F]{1,6}\\}"
         }
       ]
     },
