@@ -219,7 +219,7 @@ module.exports = grammar({
     //   [+U]uNonSurrogate
     //   [~U]uHex4Digits
     //   [+U]u{CodePoint}
-    group_name: _ => /[A-Za-z0-9]+/,
+    group_name: _ => /[A-Za-z_][A-Za-z0-9_]*/,
 
     decimal_digits: _ => /\d+/,
   },
