@@ -117,22 +117,6 @@
         {
           "type": "class_character",
           "named": true
-        },
-        {
-          "type": "control_escape",
-          "named": true
-        },
-        {
-          "type": "control_letter_escape",
-          "named": true
-        },
-        {
-          "type": "identity_escape",
-          "named": true
-        },
-        {
-          "type": "posix_character_class",
-          "named": true
         }
       ]
     }
