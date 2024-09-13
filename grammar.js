@@ -37,7 +37,7 @@ module.exports = grammar({
     $._class_atom,
   ],
 
-  conflicts: $ => [[$.character_class, $.class_range]],
+  conflicts: $ => [[$.class_range, $.character_class]],
 
   rules: {
     pattern: $ => choice(
@@ -105,12 +105,9 @@ module.exports = grammar({
     character_class: $ => seq(
       '[',
       optional('^'),
-      choice(
-        repeat(choice(
-          $.class_range,
-          $._class_atom,
-        )),
-      ),
+      optional(alias('-', $.class_character)),
+      repeat($._class_atom),
+      optional(alias('-', $.class_character)),
       ']',
     ),
 
@@ -122,17 +119,27 @@ module.exports = grammar({
 
     posix_class_name: _ => /[a-zA-Z]+/,
 
-    class_range: $ => prec.right(
-      seq($._class_atom, '-', $._class_atom),
-    ),
+    class_range: $ => prec.right(seq(
+      choice(
+        $.class_character,
+        $.character_class_escape,
+        alias('-', $.class_character),
+      ),
+      '-',
+      choice(
+        $.class_character,
+        $.character_class_escape,
+        alias('-', $.class_character),
+      ),
+    )),
 
     _class_atom: $ => choice(
-      alias('-', $.class_character),
       $.class_character,
       alias('\\-', $.identity_escape),
       $.character_class_escape,
       $._character_escape,
       $.posix_character_class,
+      $.class_range,
     ),
 
     class_character: _ => // NOT: \ ] or -
