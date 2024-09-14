@@ -38,7 +38,7 @@ module.exports = grammar({
     $._class_atom,
   ],
 
-  conflicts: $ => [[$.character_class, $.class_range]],
+  conflicts: $ => [[$.class_range, $.character_class]],
 
   rules: {
     pattern: $ => choice(
@@ -105,23 +105,20 @@ module.exports = grammar({
     character_class: $ => seq(
       '[',
       optional('^'),
-      repeat(choice(
-        $.class_range,
-        $._class_atom,
-      )),
+      optional(alias('-', $.class_character)),
+      repeat($._class_atom),
+      optional(alias('-', $.class_character)),
       ']',
     ),
 
-    class_range: $ => prec.right(
-      seq($._class_atom, '-', $._class_atom),
-    ),
+    class_range: $ => seq($.class_character, '-', $.class_character),
 
     _class_atom: $ => choice(
-      alias('-', $.class_character),
       $.class_character,
       alias('\\-', $.identity_escape),
       $.character_class_escape,
       $._character_escape,
+      $.class_range,
     ),
 
     class_character: _ => // NOT: \ ] or -
