@@ -226,6 +226,7 @@
   {
     "type": "pattern",
     "named": true,
+    "root": true,
     "fields": {},
     "children": {
       "multiple": false,
