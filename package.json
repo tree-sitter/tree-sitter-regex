@@ -49,13 +49,6 @@
     "start": "tree-sitter playground",
     "test": "node --test bindings/node/*_test.js"
   },
-  "tree-sitter": [
-    {
-      "scope": "source.regex",
-      "injection-regex": "^regex$",
-      "highlights": "queries/highlights.scm"
-    }
-  ],
   "eslintConfig": {
     "env": {
       "commonjs": true,
