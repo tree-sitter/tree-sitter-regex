@@ -12,8 +12,7 @@
  *
  * @param {RuleBuilder<string>} prefix - The rule builder
  *
- * @return {RuleBuilder<string>}
- *
+ * @returns {RuleBuilder<string>}
  */
 const quantifierRule = prefix => $ => seq(
   prefix($),
