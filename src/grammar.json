@@ -521,8 +521,16 @@
                           "value": ","
                         },
                         {
-                          "type": "SYMBOL",
-                          "name": "decimal_digits"
+                          "type": "CHOICE",
+                          "members": [
+                            {
+                              "type": "SYMBOL",
+                              "name": "decimal_digits"
+                            },
+                            {
+                              "type": "BLANK"
+                            }
+                          ]
                         }
                       ]
                     },
