@@ -137,7 +137,7 @@ module.exports = grammar({
     optional: quantifierRule(_ => '?'),
     count_quantifier: quantifierRule($ => seq(
       '{',
-      seq($.decimal_digits, optional(seq(',', $.decimal_digits))),
+      seq($.decimal_digits, optional(seq(',', optional($.decimal_digits)))),
       '}',
     )),
 
