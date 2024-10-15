@@ -47,7 +47,7 @@ h*?e*l+.?
 ================================================================================
 quantifiers - count
 ================================================================================
-h{1,2}?el{1,2}.{3}
+h{1,2}?el{1,2}.{3}t{4,}
 --------------------------------------------------------------------------------
 
 (pattern
@@ -64,7 +64,10 @@ h{1,2}?el{1,2}.{3}
       (decimal_digits))
     (any_character)
     (count_quantifier
-      (decimal_digits))))
+      (decimal_digits))
+    (pattern_character)
+    (count_quantifier
+        (decimal_digits))))
 
 ================================================================================
 open brace reads as a pattern character when not closed
