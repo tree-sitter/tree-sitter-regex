@@ -9,6 +9,8 @@
   "]"
   "{"
   "}"
+  "[:"
+  ":]"
 ] @punctuation.bracket
 
 (group_name) @property
@@ -45,6 +47,9 @@
     (class_range "-" @operator)
   ])
 
-(class_character) @constant.character
+[
+  (class_character)
+  (posix_class_name)
+] @constant.character
 
 (pattern_character) @string

@@ -593,3 +593,18 @@ a multiline url regex
             (class_character)
             (class_character))
           (zero_or_more))))))
+
+==============================
+POSIX Character Class
+==============================
+
+[[:alnum:]]+
+
+---
+
+(pattern
+  (term
+    (character_class
+      (posix_character_class
+        (posix_class_name)))
+    (one_or_more)))

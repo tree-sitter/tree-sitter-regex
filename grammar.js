@@ -59,6 +59,7 @@ module.exports = grammar({
         $.lookaround_assertion,
         $.pattern_character,
         $.character_class,
+        $.posix_character_class,
         $.any_character,
         $.decimal_escape,
         $.character_class_escape,
@@ -104,12 +105,22 @@ module.exports = grammar({
     character_class: $ => seq(
       '[',
       optional('^'),
-      repeat(choice(
-        $.class_range,
-        $._class_atom,
-      )),
+      choice(
+        repeat(choice(
+          $.class_range,
+          $._class_atom,
+        )),
+      ),
       ']',
     ),
+
+    posix_character_class: $ => seq(
+      '[:',
+      $.posix_class_name,
+      ':]',
+    ),
+
+    posix_class_name: _ => /[a-zA-Z]+/,
 
     class_range: $ => prec.right(
       seq($._class_atom, '-', $._class_atom),
@@ -121,6 +132,7 @@ module.exports = grammar({
       alias('\\-', $.identity_escape),
       $.character_class_escape,
       $._character_escape,
+      $.posix_character_class,
     ),
 
     class_character: _ => // NOT: \ ] or -
