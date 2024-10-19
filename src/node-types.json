@@ -75,6 +75,10 @@
         {
           "type": "identity_escape",
           "named": true
+        },
+        {
+          "type": "posix_character_class",
+          "named": true
         }
       ]
     }
@@ -120,6 +124,10 @@
         },
         {
           "type": "identity_escape",
+          "named": true
+        },
+        {
+          "type": "posix_character_class",
           "named": true
         }
       ]
@@ -244,6 +252,21 @@
     }
   },
   {
+    "type": "posix_character_class",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "posix_class_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "start_assertion",
     "named": true,
     "fields": {}
@@ -333,6 +356,10 @@
           "named": true
         },
         {
+          "type": "posix_character_class",
+          "named": true
+        },
+        {
           "type": "start_assertion",
           "named": true
         },
@@ -418,6 +445,10 @@
     "named": false
   },
   {
+    "type": ":]",
+    "named": false
+  },
+  {
     "type": "=",
     "named": false
   },
@@ -431,6 +462,10 @@
   },
   {
     "type": "[",
+    "named": false
+  },
+  {
+    "type": "[:",
     "named": false
   },
   {
@@ -495,6 +530,10 @@
   },
   {
     "type": "pattern_character",
+    "named": true
+  },
+  {
+    "type": "posix_class_name",
     "named": true
   },
   {
