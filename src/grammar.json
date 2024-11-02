@@ -677,8 +677,16 @@
           "value": "\\k"
         },
         {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
           "type": "SYMBOL",
           "name": "group_name"
+        },
+        {
+          "type": "STRING",
+          "value": ">"
         }
       ]
     },
