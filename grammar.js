@@ -166,7 +166,7 @@ module.exports = grammar({
       '}',
     )),
 
-    backreference_escape: $ => seq('\\k', $.group_name),
+    backreference_escape: $ => seq('\\k', '<', $.group_name, '>'),
 
     decimal_escape: _ => /\\[1-9][0-9]*/,
 
