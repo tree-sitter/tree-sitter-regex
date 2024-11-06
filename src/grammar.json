@@ -364,6 +364,10 @@
                 "name": "character_class_escape"
               },
               {
+                "type": "SYMBOL",
+                "name": "control_escape"
+              },
+              {
                 "type": "ALIAS",
                 "content": {
                   "type": "STRING",
@@ -388,6 +392,10 @@
               {
                 "type": "SYMBOL",
                 "name": "character_class_escape"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "control_escape"
               },
               {
                 "type": "ALIAS",
@@ -803,8 +811,17 @@
       ]
     },
     "control_escape": {
-      "type": "PATTERN",
-      "value": "\\\\[bfnrtv0]"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "\\\\[bfnrtv0]"
+        },
+        {
+          "type": "PATTERN",
+          "value": "\\\\x[0-9a-fA-F]{2}"
+        }
+      ]
     },
     "control_letter_escape": {
       "type": "PATTERN",
