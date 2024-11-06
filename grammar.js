@@ -123,12 +123,14 @@ module.exports = grammar({
       choice(
         $.class_character,
         $.character_class_escape,
+        $.control_escape,
         alias('-', $.class_character),
       ),
       '-',
       choice(
         $.class_character,
         $.character_class_escape,
+        $.control_escape,
         alias('-', $.class_character),
       ),
     )),
@@ -200,7 +202,10 @@ module.exports = grammar({
     // lookahead is not also a digit.
     // I think this has little bearing on the highlighting of
     // correct regexes.
-    control_escape: _ => /\\[bfnrtv0]/,
+    control_escape: _ => choice(
+      /\\[bfnrtv0]/,
+      /\\x[0-9a-fA-F]{2}/,
+    ),
 
     control_letter_escape: _ => /\\c[a-zA-Z]/,
 

@@ -117,9 +117,18 @@
         {
           "type": "class_character",
           "named": true
+        },
+        {
+          "type": "control_escape",
+          "named": true
         }
       ]
     }
+  },
+  {
+    "type": "control_escape",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "count_quantifier",
@@ -487,10 +496,6 @@
   },
   {
     "type": "class_character",
-    "named": true
-  },
-  {
-    "type": "control_escape",
     "named": true
   },
   {

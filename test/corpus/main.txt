@@ -672,3 +672,22 @@ Unicode escaped characters as atoms in character classes
         (class_character)
         (character_class_escape
           (unicode_character_escape))))))
+
+============================================================
+Hexadecimal digits escape sequence
+============================================================
+
+\x0F\xa8[\x20-\x5A\x5c]
+
+------------------------------------------------------------
+
+(pattern
+  (term
+    (control_escape)
+    (control_escape)
+    (character_class
+      (class_range
+        (control_escape)
+        (control_escape))
+      (control_escape))))
+
