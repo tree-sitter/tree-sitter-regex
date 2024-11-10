@@ -456,10 +456,17 @@ hello (.*)
 named capturing groups
 ================================================================================
 (?<the_world>.*)
+(?P<python>.*)
 --------------------------------------------------------------------------------
 
 (pattern
   (term
+    (named_capturing_group
+      (group_name)
+      (pattern
+        (term
+          (any_character)
+          (zero_or_more))))
     (named_capturing_group
       (group_name)
       (pattern
@@ -471,6 +478,7 @@ named capturing groups
 named capturing groups - backreferences
 ================================================================================
 (?<the_world>.*)\k<the_world>
+(?P<python>.*)(?P=python)
 --------------------------------------------------------------------------------
 
 (pattern
@@ -482,6 +490,14 @@ named capturing groups - backreferences
           (any_character)
           (zero_or_more))))
     (backreference_escape
+      (group_name))
+    (named_capturing_group
+      (group_name)
+      (pattern
+        (term
+          (any_character)
+          (zero_or_more))))
+    (named_group_backreference
       (group_name))))
 
 ================================================================================
