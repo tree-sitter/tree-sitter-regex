@@ -127,6 +127,10 @@
               {
                 "type": "SYMBOL",
                 "name": "non_capturing_group"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "inline_flags_group"
               }
             ]
           },
@@ -507,6 +511,83 @@
           "value": ")"
         }
       ]
+    },
+    "inline_flags_group": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "(?"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "flags"
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "flags"
+                },
+                {
+                  "type": "STRING",
+                  "value": "-"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "flags"
+                }
+              ]
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "-"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "flags"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "pattern"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "flags": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z]+"
     },
     "zero_or_more": {
       "type": "SEQ",

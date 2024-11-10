@@ -691,3 +691,46 @@ Hexadecimal digits escape sequence
         (control_escape))
       (control_escape))))
 
+============================================================
+Inline regex flags
+============================================================
+
+(?aiLmsux)
+(?aiLmsux:test)
+(?aiLmsux-imsx:test)
+(?-imsx:test)
+(?-imsx)
+
+------------------------------------------------------------
+
+(pattern
+  (term
+    (inline_flags_group
+      (flags))
+    (inline_flags_group
+      (flags)
+      (pattern
+        (term
+          (pattern_character)
+          (pattern_character)
+          (pattern_character)
+          (pattern_character))))
+    (inline_flags_group
+      (flags)
+      (flags)
+      (pattern
+        (term
+          (pattern_character)
+          (pattern_character)
+          (pattern_character)
+          (pattern_character))))
+    (inline_flags_group
+      (flags)
+      (pattern
+        (term
+          (pattern_character)
+          (pattern_character)
+          (pattern_character)
+          (pattern_character))))
+    (inline_flags_group
+      (flags))))

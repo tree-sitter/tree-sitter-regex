@@ -68,6 +68,7 @@ module.exports = grammar({
         $.anonymous_capturing_group,
         $.named_capturing_group,
         $.non_capturing_group,
+        $.inline_flags_group,
       ),
       optional(choice(
         $.zero_or_more,
@@ -152,6 +153,19 @@ module.exports = grammar({
     named_capturing_group: $ => seq('(?<', $.group_name, '>', $.pattern, ')'),
 
     non_capturing_group: $ => seq('(?:', $.pattern, ')'),
+
+    inline_flags_group: $ => seq(
+      '(?',
+      choice(
+        $.flags,
+        seq($.flags, '-', $.flags),
+        seq('-', $.flags),
+      ),
+      optional(seq(':', $.pattern)),
+      ')',
+    ),
+
+    flags: _ => /[a-zA-Z]+/,
 
     zero_or_more: quantifierRule(_ => '*'),
     one_or_more: quantifierRule(_ => '+'),

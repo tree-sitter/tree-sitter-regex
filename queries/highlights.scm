@@ -41,6 +41,12 @@
     "," @punctuation.delimiter
   ])
 
+(inline_flags_group
+  "-"? @operator
+  ":"? @punctuation.delimiter)
+
+(flags) @character.special
+
 (character_class
   [
     "^" @operator
