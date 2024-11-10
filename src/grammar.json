@@ -118,6 +118,10 @@
               },
               {
                 "type": "SYMBOL",
+                "name": "named_group_backreference"
+              },
+              {
+                "type": "SYMBOL",
                 "name": "anonymous_capturing_group"
               },
               {
@@ -474,8 +478,17 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "(?<"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "(?<"
+            },
+            {
+              "type": "STRING",
+              "value": "(?P<"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
@@ -776,6 +789,23 @@
         {
           "type": "STRING",
           "value": ">"
+        }
+      ]
+    },
+    "named_group_backreference": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "(?P="
+        },
+        {
+          "type": "SYMBOL",
+          "name": "group_name"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
     },

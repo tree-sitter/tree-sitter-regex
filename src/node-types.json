@@ -208,6 +208,21 @@
     }
   },
   {
+    "type": "named_group_backreference",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "group_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "non_capturing_group",
     "named": true,
     "fields": {},
@@ -366,6 +381,10 @@
           "named": true
         },
         {
+          "type": "named_group_backreference",
+          "named": true
+        },
+        {
           "type": "non_boundary_assertion",
           "named": true
         },
@@ -457,6 +476,14 @@
   },
   {
     "type": "(?<",
+    "named": false
+  },
+  {
+    "type": "(?P<",
+    "named": false
+  },
+  {
+    "type": "(?P=",
     "named": false
   },
   {

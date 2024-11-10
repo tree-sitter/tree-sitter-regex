@@ -65,6 +65,7 @@ module.exports = grammar({
         $.character_class_escape,
         $._character_escape,
         $.backreference_escape,
+        $.named_group_backreference,
         $.anonymous_capturing_group,
         $.named_capturing_group,
         $.non_capturing_group,
@@ -150,7 +151,7 @@ module.exports = grammar({
 
     anonymous_capturing_group: $ => seq('(', $.pattern, ')'),
 
-    named_capturing_group: $ => seq('(?<', $.group_name, '>', $.pattern, ')'),
+    named_capturing_group: $ => seq(choice('(?<', '(?P<'), $.group_name, '>', $.pattern, ')'),
 
     non_capturing_group: $ => seq('(?:', $.pattern, ')'),
 
@@ -183,6 +184,8 @@ module.exports = grammar({
     )),
 
     backreference_escape: $ => seq('\\k', '<', $.group_name, '>'),
+
+    named_group_backreference: $ => seq('(?P=', $.group_name, ')'),
 
     decimal_escape: _ => /\\[1-9][0-9]*/,
 
