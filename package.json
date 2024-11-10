@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-regex",
-  "version": "0.24.1",
+  "version": "0.24.2",
   "description": "Regex grammar for tree-sitter",
   "repository": "github:tree-sitter/tree-sitter-regex",
   "license": "MIT",
