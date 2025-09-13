@@ -192,7 +192,7 @@ checksum = "c4013970217383f67b18aef68f6fb2e8d409bc5755227092d32efb0422ba24b8"
 
 [[package]]
 name = "tree-sitter-regex"
-version = "0.24.3"
+version = "0.25.0"
 dependencies = [
  "cc",
  "tree-sitter",
