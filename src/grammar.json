@@ -981,5 +981,6 @@
     "_character_escape",
     "_class_atom"
   ],
-  "supertypes": []
+  "supertypes": [],
+  "reserved": {}
 }
